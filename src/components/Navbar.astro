@@ -1,0 +1,47 @@
+---
+// Navbar.astro
+const links = [
+  { name: 'Services', href: '#services' },
+  { name: 'Gallery', href: '#gallery' },
+  { name: 'About', href: '#about' },
+];
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-md bg-neutral-950/70 border-b border-white/5 shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
+  <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <!-- Sophisticated logo text -->
+      <a href="/" class="text-2xl font-black tracking-tighter uppercase whitespace-nowrap">
+        <span class="text-white">Omega</span>
+        <span class="text-blue-500">Detailing</span>
+      </a>
+    </div>
+
+    {/* Desktop Navigation */}
+    <div class="hidden md:flex items-center gap-8">
+      {links.map((link) => (
+        <a 
+          href={link.href} 
+          class="text-sm uppercase tracking-widest text-neutral-400 hover:text-white transition-colors duration-300 font-semibold"
+        >
+          {link.name}
+        </a>
+      ))}
+      <a 
+        href="#contact" 
+        class="bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold uppercase tracking-wider py-3 px-6 rounded-sm shadow-[0_0_15px_rgba(37,99,235,0.4)] hover:shadow-[0_0_25px_rgba(37,99,235,0.6)] transition-all duration-300"
+      >
+        Book Now
+      </a>
+    </div>
+
+    {/* Mobile Menu Toggle (Simplified placeholder) */}
+    <div class="md:hidden flex">
+      <button class="text-white p-2">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>

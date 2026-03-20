@@ -1,13 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import Footer from '../components/Footer.astro';
 ---
 
 <Layout>
-	<main class="min-h-screen bg-neutral-950 text-white flex flex-col items-center justify-center">
-		<h1 class="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">Omega Detailing</h1>
-		<p class="text-neutral-400">Astro + Tailwind CSS + Three.js plumbing is ready.</p>
-		
-		<!-- A container where three.js canvas will be injected later -->
-		<div id="webgl-container" class="w-full h-64 mt-8 rounded-lg border border-neutral-800 bg-neutral-900"></div>
+	<Navbar />
+	<main class="bg-neutral-950 font-sans selection:bg-blue-500/30 selection:text-white pb-0">
+		<Hero />
+		<Services />
 	</main>
+	<Footer />
 </Layout>
