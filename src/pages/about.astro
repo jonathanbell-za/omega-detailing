@@ -1,0 +1,119 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const aboutText = "Omega Detailing is a premium South African detailing company specializing in luxurious car care and meticulous restoration. Founded and led by James Bell, whose lifelong passion for the automotive industry drives our commitment to excellence, we provide top-tier mobile detailing services directly to your doorstep.";
+---
+
+<Layout title="About Omega Detailing | Our Passion & Mission">
+  <Navbar />
+  <main class="bg-white pt-44 pb-24 text-neutral-900 min-h-screen">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="mb-16 animate-fade-in">
+        <h1 class="text-6xl font-black uppercase tracking-tighter mb-8 leading-none">
+          ABOUT <span class="text-blue-600">OMEGA</span>
+        </h1>
+        <div class="w-16 h-1 bg-blue-600 mb-12"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        <div class="space-y-8 text-lg font-light leading-relaxed text-neutral-600">
+          <p>
+            {aboutText}
+          </p>
+          <p>
+            We understand that a luxury car is more than just transportation—it's an investment and a masterpiece. That's why we use only the finest products and techniques to ensure every inch of your car receives the attention it deserves.
+          </p>
+          <p>
+            As a mobile detailing provider, James prioritizes your convenience without ever compromising on quality. Whether it's a basic refresh or a full-house restoration, James Bell brings professional-grade service directly to your location.
+          </p>
+          
+          <div class="pt-8 text-center md:text-left">
+            <a href="/pricing" class="inline-block px-10 py-5 bg-blue-600 text-white font-black uppercase tracking-widest hover:bg-neutral-900 transition-all shadow-xl shadow-blue-600/10">
+              Explore Our Services
+            </a>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <div class="absolute -inset-4 border-2 border-blue-600/20 group-hover:border-blue-600 transition-all duration-500"></div>
+          <div class="bg-neutral-50 border border-neutral-200 p-12 aspect-square flex flex-col justify-center items-center text-center space-y-6">
+             <div class="text-blue-600">
+               <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+               </svg>
+             </div>
+             <h3 class="text-2xl font-black uppercase tracking-widest text-neutral-900">James Bell</h3>
+             <p class="text-[10px] text-blue-600 uppercase tracking-[0.3em] font-black">Founder & Lead Detailer</p>
+             <p class="text-neutral-500 font-light italic">"Passionate about the car industry, dedicated to perfection."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Generalized & Simple-But-Professional Detailing Guide Section */}
+    <div class="mt-40 pt-40 border-t border-neutral-100 pb-20">
+      <div class="max-w-4xl mx-auto px-6 mb-24">
+        <h2 class="text-5xl font-black uppercase tracking-tighter mb-8 leading-tight">
+          THE ART OF <br/>
+          <span class="text-blue-600 italic">CAR DETAILING.</span>
+        </h2>
+        <p class="text-2xl text-neutral-600 font-light leading-relaxed italic">
+          Detailing is the refined elevation of a vehicle’s condition. It is a systematic process of restoration and preservation that returns a luxury car to its most pristine state through meticulous attention to every square inch.
+        </p>
+      </div>
+
+      <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
+        {/* Exterior Generalization */}
+        <div class="bg-neutral-50 p-10 border border-neutral-200 space-y-6">
+           <h3 class="text-[10px] font-black uppercase tracking-[.4em] text-blue-600">Restoration</h3>
+           <p class="font-bold text-xl uppercase tracking-tighter">Surface Elevation</p>
+           <p class="text-neutral-500 font-light leading-relaxed">
+             Beyond mere washing, detailing focuses on the microscopic restoration of exterior surfaces. By refining the finish and eliminating the signs of environmental wear, we restore a depth of clarity and brilliance that defines a showroom masterpiece.
+           </p>
+        </div>
+
+        {/* Interior Generalization */}
+        <div class="bg-neutral-50 p-10 border border-neutral-200 space-y-6">
+           <h3 class="text-[10px] font-black uppercase tracking-[.4em] text-blue-600">Metamorphosis</h3>
+           <p class="font-bold text-xl uppercase tracking-tighter">Internal Refinement</p>
+           <p class="text-neutral-500 font-light leading-relaxed">
+             The interior is treated with a level of care that transcends cleaning. It is a total rejuvenation of the cabin’s environment—refreshing every surface, texture, and element to recapture the factory-fresh aura and tactile perfection of a high-end vehicle.
+           </p>
+        </div>
+
+        {/* Purpose Generalization */}
+        <div class="bg-neutral-50 p-10 border border-neutral-200 space-y-6">
+           <h3 class="text-[10px] font-black uppercase tracking-[.4em] text-blue-600">Preservation</h3>
+           <p class="font-bold text-xl uppercase tracking-tighter">Integrity of Value</p>
+           <p class="text-neutral-500 font-light leading-relaxed">
+             Detailing is the definitive method of long-term preservation. By maintaining the aesthetic and structural integrity of a vehicle, you safeguard its status as an elite asset while ensuring it continues to deliver a premium experience year after year.
+           </p>
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-6 mt-24 space-y-12 text-neutral-600 text-lg leading-relaxed font-light">
+         <h4 class="text-3xl font-black uppercase tracking-tight text-neutral-900 italic">A Necessary Standard for Excellence</h4>
+         <p>
+           For the luxury car owner, detailing is not a luxury—it is a commitment to excellence. Regular refinement prevents the environmental degradation that dulls the soul of a machine, ensuring that every drive feels as prestigious as the first. 
+         </p>
+         <p>
+           Omega Detailing approaches each session with a mindset of absolute perfection. By choosing this level of care, you are not just maintaining a car; you are preserving a legacy of luxury and ensuring your vehicle remains in its "ultimate state" indefinitely.
+         </p>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in {
+    animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  main { font-family: 'Outfit', sans-serif; }
+</style>

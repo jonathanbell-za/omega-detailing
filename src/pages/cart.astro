@@ -1,0 +1,121 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="My Cart | Omega Detailing">
+  <Navbar />
+  <main class="bg-white pt-48 pb-32 text-neutral-900 min-h-screen">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="mb-16">
+        <h1 class="text-6xl md:text-8xl font-black uppercase tracking-tighter mb-4 leading-none text-neutral-900">
+          MY <span class="text-blue-600">CART</span>
+        </h1>
+        <p class="text-neutral-500 font-light text-2xl tracking-wide italic">Review and finalize your premium detailing session by James Bell.</p>
+        <div class="w-20 h-2 bg-blue-600 mt-10"></div>
+      </div>
+
+      <div id="cart-container" class="space-y-6">
+        {/* Dynamic Cart Items injected here */}
+        <div class="animate-pulse space-y-4">
+          <div class="h-24 bg-neutral-50 border border-neutral-200"></div>
+          <div class="h-24 bg-neutral-50 border border-neutral-200"></div>
+        </div>
+      </div>
+
+      <div id="cart-summary" class="mt-16 p-12 bg-neutral-50 border border-neutral-200 hidden shadow-sm">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-12">
+           <div class="text-center md:text-left">
+             <div class="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-400 mb-2">Estimated Total</div>
+             <div class="text-6xl font-black text-neutral-900">R <span id="total-price">0</span></div>
+             <p class="text-[10px] text-blue-600 uppercase tracking-widest mt-6 font-bold">*Final price confirmed with James during booking.</p>
+           </div>
+           <div class="flex flex-col sm:flex-row gap-6 w-full md:auto">
+             <button id="clear-cart" class="px-10 py-5 border-2 border-neutral-200 text-neutral-500 font-black uppercase tracking-widest hover:text-red-600 hover:border-red-600 transition-all text-xs">Clear All</button>
+             <a href="/book-now" class="px-12 py-5 bg-neutral-900 text-white font-black uppercase tracking-widest hover:bg-blue-600 transition-all text-center text-xs shadow-xl shadow-blue-600/10">Proceed to Booking</a>
+           </div>
+        </div>
+      </div>
+
+      <div id="empty-cart" class="hidden py-32 text-center border-2 border-dashed border-neutral-200 space-y-10">
+        <div class="text-blue-600 mb-6 flex justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-20 h-20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" /></svg>
+        </div>
+        <h2 class="text-3xl font-black uppercase tracking-widest text-neutral-900">Your cart is empty</h2>
+        <a href="/pricing" class="inline-block px-12 py-5 bg-blue-600 text-white font-black uppercase tracking-widest hover:bg-neutral-900 transition-all shadow-lg shadow-blue-600/20">Explore Packages →</a>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  function renderCart() {
+    const container = document.getElementById('cart-container');
+    const summary = document.getElementById('cart-summary');
+    const empty = document.getElementById('empty-cart');
+    const totalDisplay = document.getElementById('total-price');
+
+    if (!container || !summary || !empty || !totalDisplay) return;
+
+    const cart = JSON.parse(localStorage.getItem('omega-cart') || '[]');
+    
+    if (cart.length === 0) {
+      container.classList.add('hidden');
+      summary.classList.add('hidden');
+      empty.classList.remove('hidden');
+      return;
+    }
+
+    empty.classList.add('hidden');
+    container.classList.remove('hidden');
+    summary.classList.remove('hidden');
+    
+    container.innerHTML = cart.map((item, index) => `
+      <div class="flex justify-between items-center p-8 bg-white border border-neutral-200 group hover:border-blue-600 transition-all shadow-sm">
+        <div class="flex items-center gap-8">
+          <div class="w-1.5 h-12 bg-blue-600"></div>
+          <div>
+            <h3 class="text-2xl font-black uppercase tracking-tighter text-neutral-900">${item.name}</h3>
+            <p class="text-[10px] text-blue-600 uppercase tracking-widest font-black">Professional Detailing by James Bell</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-10">
+          <span class="text-3xl font-black text-neutral-900">R ${item.price}</span>
+          <button class="remove-item text-neutral-300 hover:text-red-500 transition-colors p-2" data-index="${index}">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+          </button>
+        </div>
+      </div>
+    `).join('');
+
+    const total = cart.reduce((acc, item) => acc + item.price, 0);
+    totalDisplay.textContent = total;
+
+    // Attach remove listeners
+    document.querySelectorAll('.remove-item').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const idx = e.currentTarget.getAttribute('data-index');
+        const cart = JSON.parse(localStorage.getItem('omega-cart') || '[]');
+        cart.splice(parseInt(idx), 1);
+        localStorage.setItem('omega-cart', JSON.stringify(cart));
+        renderCart();
+      });
+    });
+  }
+
+  document.getElementById('clear-cart')?.addEventListener('click', () => {
+    localStorage.removeItem('omega-cart');
+    renderCart();
+  });
+
+  // Initial render
+  renderCart();
+</script>
+
+<style>
+  main {
+    font-family: 'Outfit', sans-serif;
+  }
+</style>

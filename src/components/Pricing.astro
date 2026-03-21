@@ -1,0 +1,439 @@
+---
+// Pricing.astro
+const packages = [
+  {
+    id: 'basic',
+    name: 'Basic',
+    description: 'Essential maintenance for a clean and refreshed vehicle.',
+    features: ['Exterior wash and dry', 'Interior wipe down', 'Vacuuming', 'Final touches'],
+    time: '1 to 1.5 hours',
+    pricing: {
+      hatchback: 250,
+      suvSedan: 300,
+      truckVan: 350
+    },
+    popular: false,
+    icon: 'droplets'
+  },
+  {
+    id: 'premium',
+    name: 'Premium',
+    description: 'Our most popular package with focused detailing for every corner.',
+    features: ['Pre-wash', 'Focused wheel cleaning', 'Wash and dry', 'Interior detailing', 'Vacuuming', 'Handled by James Bell'],
+    time: '1.5 to 2 hours',
+    pricing: {
+      hatchback: 500,
+      suvSedan: 550,
+      truckVan: 600
+    },
+    popular: true,
+    icon: 'star'
+  },
+  {
+    id: 'fullhouse',
+    name: 'Full House',
+    description: 'The ultimate deep cleaning and decontamination package.',
+    features: ['Pre wash', 'Deep wheel cleaning', 'Engine bay detailing', 'Wash and dry', 'Paint decontamination', 'Deep interior detail', 'Vacuuming', 'Final touches'],
+    time: '2.5 to 3 hours',
+    pricing: {
+      hatchback: 850,
+      suvSedan: 900,
+      truckVan: 950
+    },
+    popular: false,
+    icon: 'home'
+  }
+];
+
+const specializedPackages = [
+  {
+    id: 'exterior',
+    name: 'Exterior Detail',
+    description: 'Focused exclusively on restoring and protecting the exterior surfaces.',
+    features: ['Pre wash', 'Deep wheel cleaning', 'Engine bay detail', 'Thorough wash and dry', 'Paint decontamination', 'Plastic trim restoration', 'Wax', 'Ceramic Sealant by James Bell'],
+    time: '2.5 to 3 hours',
+    pricing: {
+      hatchback: 650,
+      suvSedan: 700,
+      truckVan: 750
+    },
+    icon: 'shimmer'
+  },
+  {
+    id: 'interior',
+    name: 'Interior Detail',
+    description: 'A deep restorative clean for the entire cabin, personally executed by James Bell.',
+    features: ['Thorough vacuuming', 'Stain removal', 'Carpet shampoo', 'Deep interior detailing', 'Deep seat cleaning', 'Trim restoration', 'Meticulous finishing'],
+    time: '2.5 to 3 hours',
+    pricing: {
+      hatchback: 700,
+      suvSedan: 750,
+      truckVan: 800
+    },
+    icon: 'armchair'
+  }
+];
+
+const additionalOptions = [
+  {
+    id: 'paint-correction',
+    name: 'Paint Correction',
+    description: 'Removing swirls and scratches to restore paint clarity.',
+    options: [
+      { label: 'One Step Correction (2-2.5h)', hatchback: 850, suvSedan: 950, truckVan: 1050 },
+      { label: 'Two Step Correction (3-4h)', hatchback: 1400, suvSedan: 1500, truckVan: 1600 }
+    ]
+  },
+  {
+    id: 'ceramic-coating',
+    name: 'Ceramic Coating',
+    description: 'Nano-technology glass shield for ultimate protection.',
+    options: [
+      { label: '3 Month Coating', price: 400 },
+      { label: '12 Month Coating', price: 1000 },
+      { label: '3 to 5 Year Coating', price: 3500 }
+    ]
+  },
+  {
+    id: 'decontamination',
+    name: 'Paint Decontamination',
+    time: '30 - 40 mins',
+    pricing: { hatchback: 250, suvSedan: 300, truckVan: 350 }
+  },
+  {
+    id: 'upholstery',
+    name: 'Upholstery Cleaning',
+    description: 'Deep restorative extraction for seats and floor surfaces.',
+    time: 'Variable time',
+    seatPrice: 100,
+    matPrice: 50
+  }
+];
+
+const vehicleTypes = [
+  { id: 'hatchback', label: 'Hatchback' },
+  { id: 'suvSedan', label: 'SUV / Sedan' },
+  { id: 'truckVan', label: 'Truck / Van' }
+];
+
+const icons = {
+  droplets: `<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-4.038 0l-2.387.477a2 2 0 00-1.022.547l-3.859 3.859a2 2 0 000 2.828l1.172 1.172a2 2 0 002.828 0l.172-.172a4 4 0 00.586-1.03l.293-.733a4 4 0 011.485-2.228 4 4 0 012.228-1.485l.733-.293a4 4 0 001.03-.586l.172-.172a2 2 0 000-2.828l-1.172-1.172a2 2 0 00-2.828 0l-3.859 3.859z" /></svg>`,
+  star: `<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.175 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" /></svg>`,
+  home: `<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>`,
+  shimmer: `<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>`,
+  armchair: `<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7" /></svg>`
+};
+---
+
+<section id="pricing" class="py-32 bg-neutral-50 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-24 space-y-6">
+      <div class="inline-block px-4 py-1.5 rounded-full border border-blue-600/20 bg-blue-600/5 text-blue-600 font-black text-xs uppercase tracking-widest mb-4">Transparent Pricing</div>
+      <h2 class="text-6xl md:text-7xl font-black text-neutral-900 uppercase tracking-tighter leading-none">
+        CHOOSE YOUR <span class="text-blue-600">PACKAGE</span>
+      </h2>
+      <p class="text-neutral-500 max-w-2xl mx-auto text-xl font-light italic">
+        Luxurious car detailing sessions personally handled by James Bell.
+      </p>
+    </div>
+
+    {/* Main Packages */}
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-32">
+      {packages.map((pkg) => (
+        <div class={`package-card relative flex flex-col p-10 bg-white border-2 ${pkg.popular ? 'border-blue-600 shadow-xl shadow-blue-600/10' : 'border-neutral-200'} transition-all duration-300 group overflow-hidden`} data-pkg={JSON.stringify(pkg)}>
+          {pkg.popular && (
+            <div class="absolute top-0 right-0 bg-blue-600 text-white text-[10px] font-black uppercase tracking-[0.2em] px-8 py-2 transform translate-x-[35%] translate-y-[100%] rotate-45">
+              POPULAR
+            </div>
+          )}
+          
+          <div class="mb-10">
+            <div class="text-blue-600 mb-6 group-hover:scale-105 transition-transform" set:html={icons[pkg.icon]} />
+            <h3 class="text-4xl font-black uppercase tracking-wider mb-4 border-b-2 border-neutral-100 pb-4">{pkg.name}</h3>
+            <p class="text-neutral-600 font-light leading-relaxed text-sm">{pkg.description}</p>
+          </div>
+
+          <div class="space-y-6 mb-12">
+            <div>
+              <label class="text-[10px] font-black text-blue-600 uppercase tracking-widest mb-2 block">Vehicle Size</label>
+              <select class="pkg-size-selector w-full bg-neutral-50 border border-neutral-200 p-4 text-neutral-900 font-bold uppercase tracking-widest text-xs outline-none focus:border-blue-600 transition-all rounded-none appearance-none cursor-pointer">
+                {vehicleTypes.map(type => (
+                  <option value={type.id}>{type.label}</option>
+                ))}
+              </select>
+            </div>
+            
+            <div class="flex justify-between items-end border-b-2 border-neutral-50 pb-4">
+               <span class="text-neutral-400 text-xs font-bold uppercase tracking-widest">Total cost</span>
+               <span class="current-price text-5xl font-black text-neutral-900 transition-colors group-hover:text-blue-600">R{pkg.pricing.hatchback}</span>
+            </div>
+          </div>
+
+          <div class="mb-12 space-y-4">
+            <h4 class="text-xs font-black text-neutral-900 uppercase tracking-widest border-l-4 border-blue-600 pl-4 mb-6">What's Included</h4>
+            <ul class="space-y-3">
+              {pkg.features.map(f => (
+                <li class="flex items-center gap-3 text-neutral-600 text-sm">
+                  <div class="w-2 h-2 bg-blue-600 rounded-none transform rotate-45 flex-shrink-0"></div>
+                  {f}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="mt-auto space-y-6">
+            <div class="text-[10px] font-bold uppercase tracking-widest text-neutral-400 flex justify-between">
+              <span>Duration</span>
+              <span class="text-neutral-900">{pkg.time}</span>
+            </div>
+            <button class="add-package-to-cart w-full py-6 bg-blue-600 text-white font-black uppercase tracking-widest hover:bg-neutral-900 transition-all shadow-lg hover:shadow-neutral-900/20">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* Specialized Header */}
+    <div class="text-center mb-20">
+       <h3 class="text-4xl font-black uppercase tracking-tight text-neutral-900 mb-4">Focused <span class="text-blue-600">Detailing</span></h3>
+       <div class="w-16 h-1 bg-blue-600 mx-auto"></div>
+    </div>
+
+    {/* Specialized Packages */}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-32">
+      {specializedPackages.map((pkg) => (
+        <div class="package-card relative flex flex-col lg:flex-row gap-8 p-10 bg-white border border-neutral-200 group hover:shadow-2xl transition-all" data-pkg={JSON.stringify(pkg)}>
+          <div class="lg:w-1/2 flex flex-col">
+            <div class="text-blue-600 mb-8" set:html={icons[pkg.icon]} />
+            <h3 class="text-3xl font-black uppercase tracking-tight mb-4">{pkg.name}</h3>
+            <p class="text-neutral-600 text-sm font-light leading-relaxed mb-10">{pkg.description}</p>
+            
+            <div class="mt-auto space-y-3">
+              {pkg.features.slice(0, 4).map(f => (
+                <div class="text-[10px] text-neutral-400 font-bold uppercase tracking-widest flex items-center gap-2">
+                   <div class="w-1 h-1 bg-blue-600"></div>{f}
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          <div class="lg:w-1/2 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-neutral-100 pt-10 lg:pt-0 lg:pl-10">
+            <div class="space-y-6">
+              <label class="text-[10px] font-black text-blue-600 uppercase tracking-widest block">Vehicle Size</label>
+              <select class="pkg-size-selector w-full bg-neutral-50 border border-neutral-200 p-4 text-neutral-900 font-bold outline-none">
+                {vehicleTypes.map(type => (
+                  <option value={type.id}>{type.label}</option>
+                ))}
+              </select>
+              <div class="flex justify-between items-end pb-4 border-b border-neutral-100">
+                 <span class="text-neutral-400 text-xs font-bold uppercase">Pricing</span>
+                 <span class="current-price text-4xl font-black text-neutral-900">R{pkg.pricing.hatchback}</span>
+              </div>
+            </div>
+
+            <button class="add-package-to-cart w-full py-5 bg-neutral-900 text-white font-black uppercase tracking-widest hover:bg-blue-600 transition-all mt-10">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* Additional Grid */}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {additionalOptions.map((opt) => (
+        <div class="option-card p-10 bg-white border border-neutral-200 hover:border-blue-600 transition-all group flex flex-col shadow-sm" data-opt={JSON.stringify(opt)}>
+          <h4 class="text-2xl font-black uppercase tracking-wider mb-4 text-neutral-900 group-hover:text-blue-600">{opt.name}</h4>
+          
+          {opt.options ? (
+            <div class="space-y-6 mb-10">
+              <select class="opt-type-selector w-full bg-neutral-50 border border-neutral-200 p-3 text-xs font-bold text-neutral-900 uppercase">
+                {opt.options.map((o, i) => (
+                  <option value={i}>{o.label}</option>
+                ))}
+              </select>
+              {opt.id === 'paint-correction' && (
+                <select class="opt-size-selector w-full bg-neutral-50 border border-neutral-200 p-3 text-[10px] font-bold text-neutral-600 uppercase tracking-widest outline-none">
+                  {vehicleTypes.map(type => (
+                    <option value={type.id}>{type.label}</option>
+                  ))}
+                </select>
+              )}
+              <div class="text-4xl font-black text-blue-600 current-opt-price">
+                R{opt.id === 'paint-correction' ? opt.options[0].hatchback : opt.options[0].price}
+              </div>
+            </div>
+          ) : (
+            <div class="mb-10">
+              <p class="text-[10px] font-black text-neutral-400 uppercase tracking-[0.2em] mb-4">{opt.time}</p>
+              {opt.id === 'upholstery' ? (
+                <div class="space-y-6">
+                  <div class="flex flex-col gap-2">
+                    <label class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">Seats (R100 ea)</label>
+                    <select class="uph-seats-selector w-full bg-neutral-50 border border-neutral-200 p-2 text-xs text-neutral-900 font-bold">
+                      {[0,1,2,3,4,5,6,7,8].map(n => <option value={n}>{n} Seats</option>)}
+                    </select>
+                  </div>
+                  <div class="flex flex-col gap-2">
+                    <label class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">Floormats (R50 ea)</label>
+                    <select class="uph-mats-selector w-full bg-neutral-50 border border-neutral-200 p-2 text-xs text-neutral-900 font-bold">
+                      {[0,1,2,3,4,5,6,7,8].map(n => <option value={n}>{n} Mats</option>)}
+                    </select>
+                  </div>
+                  <div class="text-4xl font-black text-blue-600 current-opt-price">R0</div>
+                </div>
+              ) : opt.pricing ? (
+                 <div class="space-y-4">
+                    <select class="opt-size-selector w-full bg-neutral-50 border border-neutral-200 p-3 text-[10px] text-neutral-900 font-bold uppercase tracking-widest outline-none">
+                      {vehicleTypes.map(type => (
+                        <option value={type.id}>{type.label}</option>
+                      ))}
+                    </select>
+                    <div class="text-4xl font-black text-blue-600 current-opt-price">R{opt.pricing.hatchback}</div>
+                 </div>
+              ) : (
+                <div class="text-blue-600 italic font-light text-sm mb-4">Variable Pricing (Contact Us)</div>
+              )}
+            </div>
+          )}
+          
+          <button class="add-option-to-cart mt-auto w-full py-4 border-2 border-neutral-200 text-neutral-900 font-black uppercase tracking-widest hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all">
+            Add to Cart
+          </button>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+{/* Premium Toast */}
+<div id="toast" class="fixed bottom-10 right-10 z-[100] translate-y-20 opacity-0 transition-all duration-500 pointer-events-none">
+  <div class="bg-blue-600 text-white px-10 py-5 font-black uppercase tracking-widest text-xs flex items-center gap-6 shadow-2xl border border-white/20">
+    <div class="p-2 bg-white/20 rounded-full">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" /></svg>
+    </div>
+    <div class="flex flex-col">
+       <span class="text-[10px] opacity-70">Success</span>
+       <span>Item Added to Cart</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  function updateCart(name, price) {
+    const cart = JSON.parse(localStorage.getItem('omega-cart') || '[]');
+    cart.push({ name, price: parseInt(price) });
+    localStorage.setItem('omega-cart', JSON.stringify(cart));
+    
+    const toast = document.getElementById('toast');
+    toast.classList.remove('translate-y-20', 'opacity-0');
+    setTimeout(() => {
+      toast.classList.add('translate-y-20', 'opacity-0');
+    }, 4000);
+  }
+
+  // Main & Specialized Packages
+  document.querySelectorAll('.package-card').forEach(card => {
+    const pkgAttr = card.getAttribute('data-pkg');
+    if (!pkgAttr) return;
+    const pkg = JSON.parse(pkgAttr);
+    const selector = card.querySelector('.pkg-size-selector');
+    const priceDisplay = card.querySelector('.current-price');
+    const btn = card.querySelector('.add-package-to-cart');
+
+    selector?.addEventListener('change', (e) => {
+      const size = e.target.value;
+      const price = pkg.pricing[size];
+      priceDisplay.textContent = `R${price}`;
+    });
+
+    btn?.addEventListener('click', () => {
+      const sizeLabel = selector.options[selector.selectedIndex].text;
+      updateCart(`${pkg.name} (${sizeLabel})`, pkg.pricing[selector.value]);
+    });
+  });
+
+  // Additional Options
+  document.querySelectorAll('.option-card').forEach(card => {
+    const optAttr = card.getAttribute('data-opt');
+    if (!optAttr) return;
+    const opt = JSON.parse(optAttr);
+    const typeSelector = card.querySelector('.opt-type-selector');
+    const sizeSelector = card.querySelector('.opt-size-selector');
+    const priceDisplay = card.querySelector('.current-opt-price');
+    const btn = card.querySelector('.add-option-to-cart');
+
+    function updatePrice() {
+      if (!priceDisplay) return;
+      if (opt.id === 'paint-correction') {
+        const typeIdx = typeSelector.value;
+        const size = sizeSelector.value;
+        priceDisplay.textContent = `R${opt.options[typeIdx][size]}`;
+      } else if (opt.id === 'ceramic-coating') {
+        const typeIdx = typeSelector.value;
+        priceDisplay.textContent = `R${opt.options[typeIdx].price}`;
+      } else if (opt.id === 'upholstery') {
+        const seats = card.querySelector('.uph-seats-selector').value;
+        const mats = card.querySelector('.uph-mats-selector').value;
+        const total = (seats * opt.seatPrice) + (mats * opt.matPrice);
+        priceDisplay.textContent = `R${total}`;
+      } else if (opt.pricing) {
+        priceDisplay.textContent = `R${opt.pricing[sizeSelector.value]}`;
+      }
+    }
+
+    typeSelector?.addEventListener('change', updatePrice);
+    sizeSelector?.addEventListener('change', updatePrice);
+    card.querySelector('.uph-seats-selector')?.addEventListener('change', updatePrice);
+    card.querySelector('.uph-mats-selector')?.addEventListener('change', updatePrice);
+
+    btn?.addEventListener('click', () => {
+      let finalName = opt.name;
+      let finalPrice = opt.price || 0;
+
+      if (opt.id === 'paint-correction') {
+        const typeLabel = typeSelector.options[typeSelector.selectedIndex].text;
+        const sizeLabel = sizeSelector.options[sizeSelector.selectedIndex].text;
+        finalName = `${typeLabel} (${sizeLabel})`;
+        finalPrice = opt.options[typeSelector.value][sizeSelector.value];
+      } else if (opt.id === 'ceramic-coating') {
+        const typeLabel = typeSelector.options[typeSelector.selectedIndex].text;
+        finalName = `${opt.name}: ${typeLabel}`;
+        finalPrice = opt.options[typeSelector.value].price;
+      } else if (opt.id === 'upholstery') {
+        const seats = card.querySelector('.uph-seats-selector').value;
+        const mats = card.querySelector('.uph-mats-selector').value;
+        finalPrice = (seats * opt.seatPrice) + (mats * opt.matPrice);
+        finalName = `${opt.name} (${seats} Seats, ${mats} Mats)`;
+        if (finalPrice === 0) {
+          alert("Please select at least one seat or mat.");
+          return;
+        }
+      } else if (opt.pricing) {
+        const sizeLabel = sizeSelector.options[sizeSelector.selectedIndex].text;
+        finalName = `${opt.name} (${sizeLabel})`;
+        finalPrice = opt.pricing[sizeSelector.value];
+      }
+
+      updateCart(finalName, finalPrice);
+    });
+  });
+</script>
+
+<style>
+  #pricing {
+    font-family: 'Outfit', sans-serif;
+  }
+  
+  select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%232563eb' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 1rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+  }
+
+  .package-card:hover {
+    box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.1), 0 0 50px rgba(37, 99, 235, 0.05);
+  }
+</style>

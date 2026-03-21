@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Book Your Session | Omega Detailing">
+  <Navbar />
+  <main class="bg-white pt-44 pb-24 text-neutral-900 min-h-screen">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="mb-16">
+        <h1 class="text-6xl font-black uppercase tracking-tighter mb-4 leading-none">
+          BOOK YOUR <span class="text-blue-600">SESSION</span>
+        </h1>
+        <p class="text-neutral-500 font-light text-xl italic">Confirm your details and secure your vehicle's appointment.</p>
+        <div class="w-16 h-1 bg-blue-600 mt-12 mb-16"></div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-1 gap-16">
+        <form class="space-y-12">
+          {/* Section 1: Personal Info */}
+          <div class="space-y-8 p-10 bg-neutral-50 border border-neutral-200 rounded-none shadow-sm">
+            <h3 class="text-2xl font-black uppercase tracking-widest text-blue-600 border-b-2 border-neutral-100 pb-4">Personal Details</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div class="flex flex-col gap-2">
+                <label class="text-[10px] font-black uppercase tracking-widest text-neutral-400">Full Name</label>
+                <input type="text" placeholder="e.g. James Bell" class="bg-white border border-neutral-200 p-4 font-bold text-neutral-900 focus:outline-none focus:border-blue-600 transition-all rounded-none"/>
+              </div>
+              <div class="flex flex-col gap-2">
+                <label class="text-[10px] font-black uppercase tracking-widest text-neutral-400">Contact Number</label>
+                <input type="tel" placeholder="060 567 0893" class="bg-white border border-neutral-200 p-4 font-bold text-neutral-900 focus:outline-none focus:border-blue-600 transition-all rounded-none"/>
+              </div>
+              <div class="flex flex-col gap-2 md:col-span-2">
+                <label class="text-[10px] font-black uppercase tracking-widest text-neutral-400">Email Address</label>
+                <input type="email" placeholder="example@gmail.com" class="bg-white border border-neutral-200 p-4 font-bold text-neutral-900 focus:outline-none focus:border-blue-600 transition-all rounded-none"/>
+              </div>
+            </div>
+          </div>
+
+          {/* Section 2: Location Info */}
+          <div class="space-y-8 p-10 bg-neutral-50 border border-neutral-200 rounded-none shadow-sm">
+            <h3 class="text-2xl font-black uppercase tracking-widest text-blue-600 border-b-2 border-neutral-100 pb-4">Mobile Service Address</h3>
+            <div class="flex flex-col gap-2">
+              <label class="text-[10px] font-black uppercase tracking-widest text-neutral-400">Full Address for Mobile Detailing</label>
+              <textarea rows="3" placeholder="Street name, Area, City, Code" class="bg-white border border-neutral-200 p-4 font-bold text-neutral-900 focus:outline-none focus:border-blue-600 transition-all rounded-none"></textarea>
+            </div>
+          </div>
+
+          {/* Section 3: Package Summary Redirect */}
+          <div class="flex flex-col items-center justify-center p-12 border-2 border-dashed border-neutral-200 space-y-8">
+            <p class="text-neutral-500 text-sm font-bold uppercase tracking-widest text-center">Selected packages will appear in your cart before final booking.</p>
+            <div class="flex flex-col sm:flex-row gap-6 w-full sm:w-auto">
+              <a href="/pricing" class="px-10 py-4 border-2 border-neutral-200 text-neutral-900 font-black uppercase tracking-widest hover:border-blue-600 hover:text-blue-600 transition-all text-center">Review Pricing</a>
+              <a href="/cart" class="px-10 py-4 bg-blue-600 text-white font-black uppercase tracking-widest hover:bg-neutral-900 transition-all shadow-xl shadow-blue-600/10 text-center">Go to My Cart</a>
+            </div>
+          </div>
+
+          <div class="flex justify-end pt-12">
+            <button type="submit" class="w-full px-16 py-6 bg-neutral-900 text-white font-black uppercase tracking-widest hover:bg-blue-600 transition-all text-xl shadow-2xl">
+              Complete Booking
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  main { font-family: 'Outfit', sans-serif; }
+</style>

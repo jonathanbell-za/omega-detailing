@@ -1,63 +1,103 @@
 ---
-import ThreeBackground from './ThreeBackground.astro';
+// Hero.astro
 ---
 
-<section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-neutral-950">
-  <!-- 3D Background layer -->
-  <ThreeBackground />
+<section class="relative min-h-[90vh] flex items-center pt-40 pb-20 overflow-hidden bg-neutral-50 font-sans border-b border-neutral-200">
+  {/* Modern Radial Gradient Background */}
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_white_0%,_#f9fafb_100%)] opacity-100"></div>
 
-  <!-- Overlay to ensure text readability -->
-  <div class="absolute inset-0 bg-gradient-to-b from-neutral-950/40 via-neutral-950/20 to-neutral-950/90 z-10 pointer-events-none"></div>
-  <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.15)_0,rgba(0,0,0,0)_50%)] z-10 pointer-events-none"></div>
+  {/* Clearly Visible Shimmer Star Blue Pattern - High Visibility */}
+  <div class="absolute inset-0 opacity-[0.30] pointer-events-none overflow-hidden">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="star-pattern-visible" x="0" y="0" width="180" height="180" patternUnits="userSpaceOnUse" patternTransform="rotate(15)">
+          {/* Main Large Shimmer Star 1 (8-pointed stylized) */}
+          <path d="M40,20 L42,15 L44,20 L49,22 L44,24 L42,29 L40,24 L35,22 Z" fill="#1d4ed8" opacity="1" />
+          {/* Main Large Shimmer Star 2 */}
+          <path d="M120,60 L123,52 L126,60 L134,63 L126,66 L123,74 L120,66 L112,63 Z" fill="#1d4ed8" opacity="0.9" />
+          
+          {/* Medium Sparkles */}
+          <path d="M30,120 L32,110 L34,120 L44,122 L34,124 L32,134 L30,124 L20,122 Z" fill="#1d4ed8" opacity="0.7" />
+          <path d="M150,140 L152,135 L154,140 L159,142 L154,144 L152,149 L150,144 L145,142 Z" fill="#1d4ed8" opacity="0.8" />
+
+          {/* Small Background Sparkles */}
+          <path d="M80,40 L81,37 L82,40 L85,41 L82,42 L81,45 L80,42 L77,41 Z" fill="#1d4ed8" opacity="0.5" />
+          <path d="M160,20 L161,17 L162,20 L165,21 L162,22 L161,25 L160,22 L157,21 Z" fill="#1d4ed8" opacity="0.6" />
+          <path d="M60,150 L61,147 L62,150 L65,151 L62,152 L61,155 L60,152 L57,151 Z" fill="#1d4ed8" opacity="0.5" />
+          
+          {/* Tiny Dots (Distant stars) */}
+          <circle cx="100" cy="110" r="1.5" fill="#1d4ed8" opacity="0.4" />
+          <circle cx="10" cy="10" r="1" fill="#1d4ed8" opacity="0.3" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#star-pattern-visible)" />
+    </svg>
+  </div>
 
   <!-- Content layer -->
-  <div class="relative z-20 max-w-7xl mx-auto px-6 text-center lg:text-left flex flex-col lg:flex-row items-center w-full">
-    <div class="lg:w-1/2 space-y-8 flex flex-col animate-fade-in-up">
-      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/30 bg-blue-900/20 backdrop-blur-sm self-center lg:self-start mb-4">
-        <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-        <span class="text-blue-300 text-xs font-bold uppercase tracking-widest">Premium Care for Exotics</span>
+  <div class="relative z-10 max-w-7xl px-6 w-full text-left">
+    <div class="max-w-6xl space-y-12 animate-fade-in">
+      <div class="space-y-4">
+        <h2 class="text-blue-600 font-black uppercase tracking-[0.6em] text-6xl md:text-9xl italic opacity-30">WELCOME!</h2>
+        <div class="inline-flex items-center gap-3 px-6 py-2 rounded-full border border-blue-600/20 bg-blue-600/5 backdrop-blur-md">
+          <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
+          <span class="text-blue-600 text-xs font-black uppercase tracking-[0.4em]">Expert Mobile Car Care</span>
+        </div>
       </div>
       
-      <h1 class="text-5xl md:text-7xl font-black text-white leading-[1.1] tracking-tight">
-        Perfection in <br />
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-white">Every Detail</span>
+      <h1 class="text-6xl md:text-[6.5rem] font-black text-neutral-900 leading-[0.85] tracking-tighter uppercase drop-shadow-sm">
+        <span class="text-blue-600 italic">PROFESSIONAL</span> <br />
+        CAR DETAILING.
       </h1>
       
-      <p class="text-lg md:text-xl text-neutral-400 max-w-xl mx-auto lg:mx-0 font-light">
-        We specialize in the restoration, protection, and maintenance of high-end vehicles. Experience the ultimate showroom finish.
+      <p class="text-xl md:text-3xl text-neutral-600 max-w-3xl font-light leading-relaxed italic">
+        Welcome to <span class="font-bold text-neutral-900">Omega Vehicle Detailing</span>. Premium mobile restoration and quality car care for your luxury vehicle.
       </p>
       
-      <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
+      <div class="flex flex-col sm:flex-row gap-6 pt-6 justify-start">
         <a 
-          href="#services" 
-          class="inline-flex justify-center items-center py-4 px-8 bg-blue-600 hover:bg-blue-500 text-white font-bold uppercase tracking-wider rounded-sm transition-all duration-300 shadow-[0_0_20px_rgba(37,99,235,0.4)]"
+          href="/book-now" 
+          class="inline-flex items-center justify-center px-10 py-5 font-black text-white bg-blue-600 transition-all duration-300 hover:bg-neutral-900 shadow-xl shadow-blue-600/10 uppercase tracking-widest text-sm"
         >
-          Explore Services
+          Book Your Session
         </a>
+        
         <a 
-          href="#gallery" 
-          class="inline-flex justify-center items-center py-4 px-8 border border-neutral-700 hover:border-blue-500 text-white font-bold uppercase tracking-wider rounded-sm backdrop-blur-sm bg-white/5 hover:bg-blue-900/20 transition-all duration-300"
+          href="/pricing" 
+          class="inline-flex items-center justify-center px-10 py-5 font-black text-neutral-900 border-2 border-neutral-200 bg-white transition-all duration-300 hover:border-blue-600 hover:text-blue-600 uppercase tracking-widest text-sm"
         >
-          View Gallery
+          View Packages
         </a>
       </div>
+    </div>
+  </div>
+
+  <!-- Scroll Scroll -->
+  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+    <div class="w-6 h-10 border-2 border-neutral-300 rounded-full flex justify-center pt-2">
+      <div class="w-1 h-2 bg-blue-600 rounded-full"></div>
     </div>
   </div>
 </section>
 
 <style>
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
-  .animate-fade-in-up {
-    animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  @keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
   }
+
+  .animate-fade-in {
+    animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-fade-in-right {
+    animation: fadeInRight 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  h1 { font-family: 'Outfit', sans-serif; }
 </style>

@@ -2,7 +2,7 @@
 // ThreeBackground.astro
 ---
 
-<div id="canvas-container" class="absolute inset-0 z-0 overflow-hidden bg-neutral-950">
+<div id="canvas-container" class="absolute inset-0 z-0 overflow-hidden bg-white">
 </div>
 
 <script>
@@ -12,45 +12,51 @@
   const container = document.getElementById('canvas-container');
   const scene = new THREE.Scene();
 
-  // Add a very subtle blue fog for depth
-  scene.fog = new THREE.FogExp2(0x050a15, 0.002);
+  // Light fog
+  scene.fog = new THREE.FogExp2(0xffffff, 0.01);
 
   const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-  camera.position.z = 30;
-  camera.position.y = 10;
+  camera.position.z = 25;
 
   const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   container?.appendChild(renderer.domElement);
 
-  // Particles
+  // Central 3D Element (Abstract Wheel)
+  const torusGeometry = new THREE.TorusGeometry(8, 0.1, 16, 100);
+  const torusMaterial = new THREE.MeshBasicMaterial({ color: 0x3b82f6, wireframe: true, transparent: true, opacity: 0.15 });
+  const torus = new THREE.Mesh(torusGeometry, torusMaterial);
+  scene.add(torus);
+
+  // Inner rings
+  const torus2 = new THREE.Mesh(new THREE.TorusGeometry(6, 0.05, 16, 80), torusMaterial);
+  scene.add(torus2);
+
+  // Particles (Darker for visibility on white)
   const particlesGeometry = new THREE.BufferGeometry();
-  const particlesCount = 2000;
+  const particlesCount = 800;
   const posArray = new Float32Array(particlesCount * 3);
   const colorArray = new Float32Array(particlesCount * 3);
 
   for (let i = 0; i < particlesCount * 3; i += 3) {
-    // Spread particles over a large area
-    posArray[i] = (Math.random() - 0.5) * 100; // x
-    posArray[i + 1] = (Math.random() - 0.5) * 50; // y
-    posArray[i + 2] = (Math.random() - 0.5) * 100; // z
+    posArray[i] = (Math.random() - 0.5) * 80;
+    posArray[i + 1] = (Math.random() - 0.5) * 40;
+    posArray[i + 2] = (Math.random() - 0.5) * 80;
 
-    // Add some blue/cyan color variations
-    colorArray[i] = 0.1; // R
-    colorArray[i + 1] = 0.5 + Math.random() * 0.5; // G (0.5 to 1.0)
-    colorArray[i + 2] = 0.8 + Math.random() * 0.2; // B (0.8 to 1.0)
+    colorArray[i] = 0.2; // R (Darker)
+    colorArray[i + 1] = 0.4; // G
+    colorArray[i + 2] = 0.8; // B
   }
 
   particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
   particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
 
   const particlesMaterial = new THREE.PointsMaterial({
-    size: 0.15,
+    size: 0.2,
     vertexColors: true,
     transparent: true,
-    opacity: 0.8,
-    blending: THREE.AdditiveBlending
+    opacity: 0.4
   });
 
   const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
@@ -59,9 +65,6 @@
   // Mouse interaction
   let mouseX = 0;
   let mouseY = 0;
-  let targetX = 0;
-  let targetY = 0;
-
   const windowHalfX = window.innerWidth / 2;
   const windowHalfY = window.innerHeight / 2;
 
@@ -72,27 +75,23 @@
 
   const clock = new THREE.Clock();
 
-  // Animation Loop
   function animate() {
     requestAnimationFrame(animate);
     const elapsedTime = clock.getElapsedTime();
 
-    targetX = mouseX * 0.001;
-    targetY = mouseY * 0.001;
-
-    // Smooth camera movement based on mouse
-    particlesMesh.rotation.y += 0.05 * (targetX - particlesMesh.rotation.y);
-    particlesMesh.rotation.x += 0.05 * (targetY - particlesMesh.rotation.x);
+    torus.rotation.y = elapsedTime * 0.1;
+    torus.rotation.x = elapsedTime * 0.05;
+    torus2.rotation.y = -elapsedTime * 0.15;
     
-    // Slow drift of the entire system
-    particlesMesh.position.y = Math.sin(elapsedTime * 0.5) * 2;
+    // Smooth follow mouse
+    particlesMesh.rotation.y += (mouseX * 0.0001 - particlesMesh.rotation.y) * 0.05;
+    particlesMesh.rotation.x += (mouseY * 0.0001 - particlesMesh.rotation.x) * 0.05;
 
     renderer.render(scene, camera);
   }
 
   animate();
 
-  // Handle Resize
   window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();

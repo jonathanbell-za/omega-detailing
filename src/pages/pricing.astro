@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import PricingComponent from '../components/Pricing.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout>
+	<Navbar />
+	<main class="bg-white font-sans selection:bg-blue-500/30 selection:text-white pt-44 min-h-screen">
+		<PricingComponent />
+	</main>
+	<Footer />
+</Layout>
