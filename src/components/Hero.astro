@@ -3,68 +3,71 @@
 ---
 
 <section class="relative min-h-[90vh] flex items-center pt-40 pb-20 overflow-hidden bg-neutral-50 font-sans border-b border-neutral-200">
-  {/* Modern Radial Gradient Background */}
-  <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_white_0%,_#f9fafb_100%)] opacity-100"></div>
+  {/* Professional Blueprint Background */}
+  <div class="absolute inset-0 bg-white"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_#f8fafc_0%,_#ffffff_100%)]"></div>
+  
+  {/* Floating Bubbles Pattern */}
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="bubble bubble-1"></div>
+    <div class="bubble bubble-2"></div>
+    <div class="bubble bubble-3"></div>
+    <div class="bubble bubble-4"></div>
+    <div class="bubble bubble-5"></div>
+    <div class="bubble bubble-6"></div>
+    <div class="bubble bubble-7"></div>
+    <div class="bubble bubble-8"></div>
+  </div>
 
-  {/* Clearly Visible Shimmer Star Blue Pattern - High Visibility */}
-  <div class="absolute inset-0 opacity-[0.30] pointer-events-none overflow-hidden">
+  {/* Precision Grid Pattern */}
+  <div class="absolute inset-0 opacity-[0.03] pointer-events-none">
     <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <pattern id="star-pattern-visible" x="0" y="0" width="180" height="180" patternUnits="userSpaceOnUse" patternTransform="rotate(15)">
-          {/* Main Large Shimmer Star 1 (8-pointed stylized) */}
-          <path d="M40,20 L42,15 L44,20 L49,22 L44,24 L42,29 L40,24 L35,22 Z" fill="#1d4ed8" opacity="1" />
-          {/* Main Large Shimmer Star 2 */}
-          <path d="M120,60 L123,52 L126,60 L134,63 L126,66 L123,74 L120,66 L112,63 Z" fill="#1d4ed8" opacity="0.9" />
-          
-          {/* Medium Sparkles */}
-          <path d="M30,120 L32,110 L34,120 L44,122 L34,124 L32,134 L30,124 L20,122 Z" fill="#1d4ed8" opacity="0.7" />
-          <path d="M150,140 L152,135 L154,140 L159,142 L154,144 L152,149 L150,144 L145,142 Z" fill="#1d4ed8" opacity="0.8" />
-
-          {/* Small Background Sparkles */}
-          <path d="M80,40 L81,37 L82,40 L85,41 L82,42 L81,45 L80,42 L77,41 Z" fill="#1d4ed8" opacity="0.5" />
-          <path d="M160,20 L161,17 L162,20 L165,21 L162,22 L161,25 L160,22 L157,21 Z" fill="#1d4ed8" opacity="0.6" />
-          <path d="M60,150 L61,147 L62,150 L65,151 L62,152 L61,155 L60,152 L57,151 Z" fill="#1d4ed8" opacity="0.5" />
-          
-          {/* Tiny Dots (Distant stars) */}
-          <circle cx="100" cy="110" r="1.5" fill="#1d4ed8" opacity="0.4" />
-          <circle cx="10" cy="10" r="1" fill="#1d4ed8" opacity="0.3" />
+        <pattern id="smallGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+          <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#3b82f6" stroke-width="0.5"/>
+        </pattern>
+        <pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse">
+          <rect width="100" height="100" fill="url(#smallGrid)"/>
+          <path d="M 100 0 L 0 0 0 100" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
         </pattern>
       </defs>
-      <rect width="100%" height="100%" fill="url(#star-pattern-visible)" />
+      <rect width="100%" height="100%" fill="url(#grid)" />
     </svg>
   </div>
 
+  {/* Subtle Grainy Texture for Premium Feel */}
+  <div class="absolute inset-0 opacity-[0.40] pointer-events-none mix-blend-soft-light" style="background-image: url('https://www.transparenttextures.com/patterns/stardust.png');"></div>
+
   <!-- Content layer -->
-  <div class="relative z-10 max-w-7xl px-6 w-full text-left">
-    <div class="max-w-6xl space-y-12 animate-fade-in">
+  <div class="relative z-10 max-w-7xl px-6 w-full text-center mx-auto">
+    <div class="max-w-6xl mx-auto space-y-12 animate-fade-in">
       <div class="space-y-4">
-        <h2 class="text-blue-600 font-black uppercase tracking-[0.6em] text-6xl md:text-9xl italic opacity-30">WELCOME!</h2>
         <div class="inline-flex items-center gap-3 px-6 py-2 rounded-full border border-blue-600/20 bg-blue-600/5 backdrop-blur-md">
           <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
           <span class="text-blue-600 text-xs font-black uppercase tracking-[0.4em]">Expert Mobile Car Care</span>
         </div>
       </div>
       
-      <h1 class="text-6xl md:text-[6.5rem] font-black text-neutral-900 leading-[0.85] tracking-tighter uppercase drop-shadow-sm">
-        <span class="text-blue-600 italic">PROFESSIONAL</span> <br />
-        CAR DETAILING.
+      <h1 class="text-6xl md:text-[6.5rem] font-black text-neutral-900 leading-[1.1] tracking-tighter uppercase drop-shadow-sm">
+        PERFECTION IN <br />
+        EVERY <span class="text-blue-600 italic">DETAIL</span>.
       </h1>
       
-      <p class="text-xl md:text-3xl text-neutral-600 max-w-3xl font-light leading-relaxed italic">
-        Welcome to <span class="font-bold text-neutral-900">Omega Vehicle Detailing</span>. Premium mobile restoration and quality car care for your luxury vehicle.
+      <p class="text-xl md:text-3xl text-neutral-800 max-w-3xl mx-auto font-light leading-relaxed italic">
+        Welcome to <span class="font-bold text-black">Omega Vehicle Detailing</span>. Premium mobile restoration and quality car care for your luxury vehicle.
       </p>
       
-      <div class="flex flex-col sm:flex-row gap-6 pt-6 justify-start">
+      <div class="flex flex-col sm:flex-row gap-6 pt-6 justify-center">
         <a 
           href="/book-now" 
-          class="inline-flex items-center justify-center px-10 py-5 font-black text-white bg-blue-600 transition-all duration-300 hover:bg-neutral-900 shadow-xl shadow-blue-600/10 uppercase tracking-widest text-sm"
+          class="inline-flex items-center justify-center px-12 py-6 font-black text-white bg-blue-600 transition-all duration-300 hover:bg-neutral-900 shadow-xl shadow-blue-600/10 uppercase tracking-widest text-base rounded-full"
         >
           Book Your Session
         </a>
         
         <a 
           href="/pricing" 
-          class="inline-flex items-center justify-center px-10 py-5 font-black text-neutral-900 border-2 border-neutral-200 bg-white transition-all duration-300 hover:border-blue-600 hover:text-blue-600 uppercase tracking-widest text-sm"
+          class="inline-flex items-center justify-center px-12 py-6 font-black text-neutral-900 border-2 border-neutral-200 bg-white transition-all duration-300 hover:border-blue-600 hover:text-blue-600 uppercase tracking-widest text-base rounded-full"
         >
           View Packages
         </a>
@@ -99,5 +102,32 @@
     animation: fadeInRight 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
-  h1 { font-family: 'Outfit', sans-serif; }
+  h1 { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+  .bubble {
+    position: absolute;
+    bottom: -120px;
+    background: radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.05));
+    border: 1px solid rgba(59, 130, 246, 0.1);
+    border-radius: 50%;
+    animation: float 20s infinite ease-in;
+    backdrop-filter: blur(2px);
+  }
+
+  .bubble-1 { width: 80px; height: 80px; left: 10%; animation-duration: 25s; animation-delay: 0s; }
+  .bubble-2 { width: 120px; height: 120px; left: 25%; animation-duration: 30s; animation-delay: -5s; }
+  .bubble-3 { width: 60px; height: 60px; left: 45%; animation-duration: 22s; animation-delay: -2s; }
+  .bubble-4 { width: 150px; height: 150px; left: 60%; animation-duration: 35s; animation-delay: -10s; }
+  .bubble-5 { width: 40px; height: 40px; left: 80%; animation-duration: 18s; animation-delay: -3s; }
+  .bubble-6 { width: 100px; height: 100px; left: 90%; animation-duration: 28s; animation-delay: -7s; }
+  .bubble-7 { width: 70px; height: 70px; left: 15%; animation-duration: 26s; animation-delay: -15s; }
+  .bubble-8 { width: 130px; height: 130px; left: 75%; animation-duration: 32s; animation-delay: -12s; }
+
+  @keyframes float {
+    0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+    10% { opacity: 0.8; }
+    50% { transform: translateY(-50vh) translateX(50px) scale(1.1); }
+    90% { opacity: 0.8; }
+    100% { transform: translateY(-120vh) translateX(-20px) scale(1.2); opacity: 0; }
+  }
 </style>

@@ -8,9 +8,9 @@ const packages = [
     features: ['Exterior wash and dry', 'Interior wipe down', 'Vacuuming', 'Final touches'],
     time: '1 to 1.5 hours',
     pricing: {
-      hatchback: 250,
-      suvSedan: 300,
-      truckVan: 350
+      hatchback: 300,
+      suvSedan: 350,
+      truckVan: 400
     },
     popular: false,
     icon: 'droplets'
@@ -19,12 +19,12 @@ const packages = [
     id: 'premium',
     name: 'Premium',
     description: 'Our most popular package with focused detailing for every corner.',
-    features: ['Pre-wash', 'Focused wheel cleaning', 'Wash and dry', 'Interior detailing', 'Vacuuming', 'Handled by James Bell'],
+    features: ['Pre-wash', 'Focused wheel cleaning', 'Wash and dry', 'Interior detailing', 'Vacuuming'],
     time: '1.5 to 2 hours',
     pricing: {
-      hatchback: 500,
-      suvSedan: 550,
-      truckVan: 600
+      hatchback: 550,
+      suvSedan: 600,
+      truckVan: 650
     },
     popular: true,
     icon: 'star'
@@ -50,7 +50,7 @@ const specializedPackages = [
     id: 'exterior',
     name: 'Exterior Detail',
     description: 'Focused exclusively on restoring and protecting the exterior surfaces.',
-    features: ['Pre wash', 'Deep wheel cleaning', 'Engine bay detail', 'Thorough wash and dry', 'Paint decontamination', 'Plastic trim restoration', 'Wax', 'Ceramic Sealant by James Bell'],
+    features: ['Pre wash', 'Deep wheel cleaning', 'Engine bay detail', 'Thorough wash and dry', 'Paint decontamination', 'Plastic trim restoration', 'Wax', 'Ceramic Sealant'],
     time: '2.5 to 3 hours',
     pricing: {
       hatchback: 650,
@@ -62,7 +62,7 @@ const specializedPackages = [
   {
     id: 'interior',
     name: 'Interior Detail',
-    description: 'A deep restorative clean for the entire cabin, personally executed by James Bell.',
+    description: 'A deep restorative clean for the entire cabin.',
     features: ['Thorough vacuuming', 'Stain removal', 'Carpet shampoo', 'Deep interior detailing', 'Deep seat cleaning', 'Trim restoration', 'Meticulous finishing'],
     time: '2.5 to 3 hours',
     pricing: {
@@ -105,15 +105,15 @@ const additionalOptions = [
     name: 'Upholstery Cleaning',
     description: 'Deep restorative extraction for seats and floor surfaces.',
     time: 'Variable time',
-    seatPrice: 100,
-    matPrice: 50
+    seatPrice: 75,
+    matPrice: 30
   }
 ];
 
 const vehicleTypes = [
-  { id: 'hatchback', label: 'Hatchback' },
-  { id: 'suvSedan', label: 'SUV / Sedan' },
-  { id: 'truckVan', label: 'Truck / Van' }
+  { id: 'hatchback', label: 'Compact (Hatchback)' },
+  { id: 'suvSedan', label: 'Standard (SUV / Sedan)' },
+  { id: 'truckVan', label: 'Large (Van / Truck)' }
 ];
 
 const icons = {
@@ -128,13 +128,11 @@ const icons = {
 <section id="pricing" class="py-32 bg-neutral-50 relative overflow-hidden">
   <div class="max-w-7xl mx-auto px-6 relative z-10">
     <div class="text-center mb-24 space-y-6">
-      <div class="inline-block px-4 py-1.5 rounded-full border border-blue-600/20 bg-blue-600/5 text-blue-600 font-black text-xs uppercase tracking-widest mb-4">Transparent Pricing</div>
+
       <h2 class="text-6xl md:text-7xl font-black text-neutral-900 uppercase tracking-tighter leading-none">
         CHOOSE YOUR <span class="text-blue-600">PACKAGE</span>
       </h2>
-      <p class="text-neutral-500 max-w-2xl mx-auto text-xl font-light italic">
-        Luxurious car detailing sessions personally handled by James Bell.
-      </p>
+
     </div>
 
     {/* Main Packages */}
@@ -270,13 +268,13 @@ const icons = {
               {opt.id === 'upholstery' ? (
                 <div class="space-y-6">
                   <div class="flex flex-col gap-2">
-                    <label class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">Seats (R100 ea)</label>
+                    <label class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">Seats (R75 ea)</label>
                     <select class="uph-seats-selector w-full bg-neutral-50 border border-neutral-200 p-2 text-xs text-neutral-900 font-bold">
                       {[0,1,2,3,4,5,6,7,8].map(n => <option value={n}>{n} Seats</option>)}
                     </select>
                   </div>
                   <div class="flex flex-col gap-2">
-                    <label class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">Floormats (R50 ea)</label>
+                    <label class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">Floormats (R30 ea)</label>
                     <select class="uph-mats-selector w-full bg-neutral-50 border border-neutral-200 p-2 text-xs text-neutral-900 font-bold">
                       {[0,1,2,3,4,5,6,7,8].map(n => <option value={n}>{n} Mats</option>)}
                     </select>
@@ -423,7 +421,7 @@ const icons = {
 
 <style>
   #pricing {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
   }
   
   select {
