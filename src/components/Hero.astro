@@ -54,7 +54,7 @@
       </h1>
       
       <p class="text-xl md:text-3xl text-neutral-800 max-w-3xl mx-auto font-light leading-relaxed italic">
-        Welcome to <span class="font-bold text-black">Omega Vehicle Detailing</span>. Premium mobile restoration and quality car care for your luxury vehicle.
+        Welcome to <span class="font-bold text-black">Omega Vehicle Detailing</span>. Premium and quality car care brought to you.
       </p>
       
       <div class="flex flex-col sm:flex-row gap-6 pt-6 justify-center">
@@ -107,11 +107,11 @@
   .bubble {
     position: absolute;
     bottom: -120px;
-    background: radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.05));
-    border: 1px solid rgba(59, 130, 246, 0.1);
+    background: radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.25), rgba(59, 130, 246, 0.15));
+    border: 1px solid rgba(59, 130, 246, 0.3);
     border-radius: 50%;
     animation: float 20s infinite ease-in;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(4px);
   }
 
   .bubble-1 { width: 80px; height: 80px; left: 10%; animation-duration: 25s; animation-delay: 0s; }
@@ -125,9 +125,9 @@
 
   @keyframes float {
     0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
-    10% { opacity: 0.8; }
+    10% { opacity: 0.95; }
     50% { transform: translateY(-50vh) translateX(50px) scale(1.1); }
-    90% { opacity: 0.8; }
+    90% { opacity: 0.95; }
     100% { transform: translateY(-120vh) translateX(-20px) scale(1.2); opacity: 0; }
   }
 </style>

@@ -51,11 +51,11 @@ const specializedPackages = [
     name: 'Exterior Detail',
     description: 'Focused exclusively on restoring and protecting the exterior surfaces.',
     features: ['Pre wash', 'Deep wheel cleaning', 'Engine bay detail', 'Thorough wash and dry', 'Paint decontamination', 'Plastic trim restoration', 'Wax', 'Ceramic Sealant'],
-    time: '2.5 to 3 hours',
+    time: '2 to 2.5 hours',
     pricing: {
-      hatchback: 650,
-      suvSedan: 700,
-      truckVan: 750
+      hatchback: 700,
+      suvSedan: 750,
+      truckVan: 800
     },
     icon: 'shimmer'
   },
@@ -64,7 +64,7 @@ const specializedPackages = [
     name: 'Interior Detail',
     description: 'A deep restorative clean for the entire cabin.',
     features: ['Thorough vacuuming', 'Stain removal', 'Carpet shampoo', 'Deep interior detailing', 'Deep seat cleaning', 'Trim restoration', 'Meticulous finishing'],
-    time: '2.5 to 3 hours',
+    time: '2 to 2.5 hours',
     pricing: {
       hatchback: 700,
       suvSedan: 750,
@@ -80,8 +80,8 @@ const additionalOptions = [
     name: 'Paint Correction',
     description: 'Removing swirls and scratches to restore paint clarity.',
     options: [
-      { label: 'One Step Correction (2-2.5h)', hatchback: 850, suvSedan: 950, truckVan: 1050 },
-      { label: 'Two Step Correction (3-4h)', hatchback: 1400, suvSedan: 1500, truckVan: 1600 }
+      { label: 'One Step Correction (2-2.5h)', hatchback: 1000, suvSedan: 1100, truckVan: 1200 },
+      { label: 'Two Step Correction (3-4h)', hatchback: 1700, suvSedan: 1800, truckVan: 1900 }
     ]
   },
   {
@@ -228,9 +228,13 @@ const icons = {
                  <span class="text-neutral-400 text-xs font-bold uppercase">Pricing</span>
                  <span class="current-price text-4xl font-black text-neutral-900">R{pkg.pricing.hatchback}</span>
               </div>
+              <div class="flex justify-between items-center mt-6 text-[10px] font-bold uppercase tracking-widest text-neutral-400">
+                <span>Estimated Duration</span>
+                <span class="text-neutral-900 font-black">{pkg.time}</span>
+              </div>
             </div>
 
-            <button class="add-package-to-cart w-full py-5 bg-neutral-900 text-white font-black uppercase tracking-widest hover:bg-blue-600 transition-all mt-10">
+            <button class="add-package-to-cart w-full py-5 bg-neutral-900 text-white font-black uppercase tracking-widest hover:bg-blue-600 transition-all mt-6">
               Add to Cart
             </button>
           </div>
