@@ -1,7 +1,5 @@
 ---
 // Navbar.astro
-import { Image } from 'astro:assets';
-import logo from '../assets/logo.jpg';
 
 const links = [
   { name: 'Home', href: '/' },
@@ -16,8 +14,8 @@ const links = [
   <div class="max-w-7xl mx-auto px-6 h-32 flex items-center justify-between">
     <div class="flex items-center gap-2">
       <a href="/" class="block group">
-        <Image 
-          src={logo} 
+        <img 
+          src="/logo.jpg" 
           alt="Omega Detailing Logo" 
           class="h-20 w-auto transition-transform duration-500 group-hover:scale-105" 
           loading="eager"

@@ -1,7 +1,5 @@
 ---
 // Footer.astro
-import { Image } from 'astro:assets';
-import logo from '../assets/logo.jpg';
 ---
 
 <footer id="contact" class="bg-neutral-100 py-24 border-t border-neutral-200 text-neutral-900 overflow-hidden">
@@ -9,8 +7,8 @@ import logo from '../assets/logo.jpg';
     <!-- Brand -->
     <div class="space-y-6">
       <a href="/" class="block group">
-        <Image 
-          src={logo} 
+        <img 
+          src="/logo.jpg" 
           alt="Omega Detailing Logo" 
           class="h-16 w-auto mb-4 transition-transform duration-500 group-hover:scale-105" 
         />
