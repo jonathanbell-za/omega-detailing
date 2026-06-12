@@ -6,10 +6,10 @@ import Footer from '../components/Footer.astro';
 
 <Layout title="My Cart | Omega Detailing">
   <Navbar />
-  <main class="bg-white pt-48 pb-32 text-neutral-900 min-h-screen">
+  <main class="bg-white pt-36 md:pt-72 pb-32 text-neutral-900 min-h-screen">
     <div class="max-w-4xl mx-auto px-6">
       <div class="mb-16">
-        <h1 class="text-6xl md:text-8xl font-black uppercase tracking-tighter mb-4 leading-none text-neutral-900">
+        <h1 class="text-6xl md:text-8xl font-black uppercase tracking-tighter mb-4 leading-tight text-neutral-900">
           MY <span class="text-blue-600">CART</span>
         </h1>
         <p class="text-neutral-500 font-light text-2xl tracking-wide italic">Review and finalize your premium detailing session by James Bell.</p>
@@ -24,7 +24,7 @@ import Footer from '../components/Footer.astro';
         </div>
       </div>
 
-      <div id="cart-summary" class="mt-16 p-12 bg-neutral-50 border border-neutral-200 hidden shadow-sm">
+      <div id="cart-summary" class="mt-16 p-12 bg-neutral-50 border border-neutral-200 hidden shadow-sm rounded-2xl">
         <div class="flex flex-col md:flex-row justify-between items-center gap-12">
            <div class="text-center md:text-left">
              <div class="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-400 mb-2">Estimated Total</div>
@@ -32,18 +32,18 @@ import Footer from '../components/Footer.astro';
              <p class="text-[10px] text-blue-600 uppercase tracking-widest mt-6 font-bold">*Final price confirmed with James during booking.</p>
            </div>
            <div class="flex flex-col sm:flex-row gap-6 w-full md:auto">
-             <button id="clear-cart" class="px-10 py-5 border-2 border-neutral-200 text-neutral-500 font-black uppercase tracking-widest hover:text-red-600 hover:border-red-600 transition-all text-xs">Clear All</button>
-             <a href="/book-now" class="px-12 py-5 bg-neutral-900 text-white font-black uppercase tracking-widest hover:bg-blue-600 transition-all text-center text-xs shadow-xl shadow-blue-600/10">Proceed to Booking</a>
+             <button id="clear-cart" class="px-10 py-5 border-2 border-neutral-200 text-neutral-500 font-black uppercase tracking-widest hover:text-red-600 hover:border-red-600 transition-all text-xs rounded-xl">Clear All</button>
+             <a href="https://wa.me/27605670893" id="proceed-booking" target="_blank" rel="noopener noreferrer" class="px-12 py-5 bg-neutral-900 text-white font-black uppercase tracking-widest hover:bg-blue-600 transition-all text-center text-xs shadow-xl shadow-blue-600/10 rounded-xl">Proceed to Booking</a>
            </div>
         </div>
       </div>
 
-      <div id="empty-cart" class="hidden py-32 text-center border-2 border-dashed border-neutral-200 space-y-10">
+      <div id="empty-cart" class="hidden py-32 text-center border-2 border-dashed border-neutral-200 space-y-10 rounded-2xl">
         <div class="text-blue-600 mb-6 flex justify-center">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-20 h-20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" /></svg>
         </div>
         <h2 class="text-3xl font-black uppercase tracking-widest text-neutral-900">Your cart is empty</h2>
-        <a href="/pricing" class="inline-block px-12 py-5 bg-blue-600 text-white font-black uppercase tracking-widest hover:bg-neutral-900 transition-all shadow-lg shadow-blue-600/20">Explore Packages →</a>
+        <a href="/pricing" class="inline-block px-12 py-5 bg-blue-600 text-white font-black uppercase tracking-widest hover:bg-neutral-900 transition-all shadow-lg shadow-blue-600/20 rounded-xl">Explore Packages →</a>
       </div>
     </div>
   </main>
@@ -73,7 +73,7 @@ import Footer from '../components/Footer.astro';
     summary.classList.remove('hidden');
     
     container.innerHTML = cart.map((item, index) => `
-      <div class="flex justify-between items-center p-8 bg-white border border-neutral-200 group hover:border-blue-600 transition-all shadow-sm">
+      <div class="flex justify-between items-center p-8 bg-white border border-neutral-200 group hover:border-blue-600 transition-all shadow-sm rounded-2xl">
         <div class="flex items-center gap-8">
           <div class="w-1.5 h-12 bg-blue-600"></div>
           <div>
@@ -92,6 +92,21 @@ import Footer from '../components/Footer.astro';
 
     const total = cart.reduce((acc, item) => acc + item.price, 0);
     totalDisplay.textContent = total;
+
+    // Generate WhatsApp text based on the cart contents
+    const phoneNumber = "27605670893";
+    let message = "Hi James! I'd like to book a detailing session for the following:\n\n";
+    cart.forEach(item => {
+      message += `- ${item.name} (R${item.price})\n`;
+    });
+    message += `\nEstimated Total: R${total}`;
+    
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    
+    const proceedBtn = document.getElementById('proceed-booking');
+    if (proceedBtn) {
+      proceedBtn.setAttribute('href', whatsappUrl);
+    }
 
     // Attach remove listeners
     document.querySelectorAll('.remove-item').forEach(btn => {
@@ -116,6 +131,6 @@ import Footer from '../components/Footer.astro';
 
 <style>
   main {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
   }
 </style>

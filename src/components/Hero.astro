@@ -2,21 +2,26 @@
 // Hero.astro
 ---
 
-<section class="relative min-h-[90vh] flex items-center pt-40 pb-20 overflow-hidden bg-neutral-50 font-sans border-b border-neutral-200">
+<section class="relative min-h-[90vh] flex items-center pt-36 md:pt-64 pb-20 overflow-hidden bg-neutral-50 font-sans border-b border-neutral-200">
   {/* Professional Blueprint Background */}
   <div class="absolute inset-0 bg-white"></div>
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_#f8fafc_0%,_#ffffff_100%)]"></div>
   
-  {/* Floating Bubbles Pattern */}
+  {/* Static Technical Pattern & Ambient Gradients */}
   <div class="absolute inset-0 overflow-hidden pointer-events-none">
-    <div class="bubble bubble-1"></div>
-    <div class="bubble bubble-2"></div>
-    <div class="bubble bubble-3"></div>
-    <div class="bubble bubble-4"></div>
-    <div class="bubble bubble-5"></div>
-    <div class="bubble bubble-6"></div>
-    <div class="bubble bubble-7"></div>
-    <div class="bubble bubble-8"></div>
+    {/* Soft static blue glows for depth */}
+    <div class="absolute -top-[10%] left-[5%] w-[600px] h-[600px] bg-blue-600/[0.03] rounded-full blur-[100px]"></div>
+    <div class="absolute -bottom-[10%] right-[5%] w-[500px] h-[500px] bg-blue-600/[0.02] rounded-full blur-[100px]"></div>
+    
+    {/* Technical Dot Matrix Overlay */}
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" class="opacity-[0.06]">
+      <defs>
+        <pattern id="dotMatrix" width="24" height="24" patternUnits="userSpaceOnUse">
+          <circle cx="2" cy="2" r="1" fill="#3b82f6" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#dotMatrix)" />
+    </svg>
   </div>
 
   {/* Precision Grid Pattern */}
@@ -48,18 +53,20 @@
         </div>
       </div>
       
-      <h1 class="text-6xl md:text-[6.5rem] font-black text-neutral-900 leading-[1.1] tracking-tighter uppercase drop-shadow-sm">
-        PERFECTION IN <br />
-        EVERY <span class="text-blue-600 italic">DETAIL</span>.
+      <h1 class="text-5xl md:text-[5.5rem] font-black text-neutral-900 leading-[1.1] tracking-tighter uppercase drop-shadow-sm">
+        WELCOME TO OMEGA <br />
+        VEHICLE <span class="text-blue-600 italic">DETAILING</span>
       </h1>
       
-      <p class="text-xl md:text-3xl text-neutral-800 max-w-3xl mx-auto font-light leading-relaxed italic">
-        Welcome to <span class="font-bold text-black">Omega Vehicle Detailing</span>. Premium and quality car care brought to you.
+      <p class="text-lg md:text-2xl text-neutral-800 max-w-3xl mx-auto font-bold tracking-wide leading-relaxed">
+        Premium car detailing brought to you
       </p>
       
       <div class="flex flex-col sm:flex-row gap-6 pt-6 justify-center">
         <a 
-          href="/book-now" 
+          href="https://wa.me/27605670893?text=Hi%20James!%20I%27d%20like%20to%20book%20a%20detailing%20session." 
+          target="_blank"
+          rel="noopener noreferrer"
           class="inline-flex items-center justify-center px-12 py-6 font-black text-white bg-blue-600 transition-all duration-300 hover:bg-neutral-900 shadow-xl shadow-blue-600/10 uppercase tracking-widest text-base rounded-full"
         >
           Book Your Session
@@ -102,32 +109,7 @@
     animation: fadeInRight 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
-  h1 { font-family: 'Plus Jakarta Sans', sans-serif; }
+  h1 { font-family: 'Inter', sans-serif; }
 
-  .bubble {
-    position: absolute;
-    bottom: -120px;
-    background: radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.25), rgba(59, 130, 246, 0.15));
-    border: 1px solid rgba(59, 130, 246, 0.3);
-    border-radius: 50%;
-    animation: float 20s infinite ease-in;
-    backdrop-filter: blur(4px);
-  }
-
-  .bubble-1 { width: 80px; height: 80px; left: 10%; animation-duration: 25s; animation-delay: 0s; }
-  .bubble-2 { width: 120px; height: 120px; left: 25%; animation-duration: 30s; animation-delay: -5s; }
-  .bubble-3 { width: 60px; height: 60px; left: 45%; animation-duration: 22s; animation-delay: -2s; }
-  .bubble-4 { width: 150px; height: 150px; left: 60%; animation-duration: 35s; animation-delay: -10s; }
-  .bubble-5 { width: 40px; height: 40px; left: 80%; animation-duration: 18s; animation-delay: -3s; }
-  .bubble-6 { width: 100px; height: 100px; left: 90%; animation-duration: 28s; animation-delay: -7s; }
-  .bubble-7 { width: 70px; height: 70px; left: 15%; animation-duration: 26s; animation-delay: -15s; }
-  .bubble-8 { width: 130px; height: 130px; left: 75%; animation-duration: 32s; animation-delay: -12s; }
-
-  @keyframes float {
-    0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
-    10% { opacity: 0.95; }
-    50% { transform: translateY(-50vh) translateX(50px) scale(1.1); }
-    90% { opacity: 0.95; }
-    100% { transform: translateY(-120vh) translateX(-20px) scale(1.2); opacity: 0; }
-  }
+  /* Technical Scanning Beam */
 </style>

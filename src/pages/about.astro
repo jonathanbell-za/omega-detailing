@@ -3,15 +3,14 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 
-const aboutText = "Omega Detailing is a premium South African detailing company specializing in luxurious car care and meticulous restoration. Founded and led by James Bell, whose lifelong passion for the automotive industry drives our commitment to excellence, we provide top-tier mobile detailing services directly to your doorstep.";
 ---
 
 <Layout title="About Omega Detailing | Our Passion & Mission">
   <Navbar />
-  <main class="bg-white pt-44 pb-24 text-neutral-900 min-h-screen">
+  <main class="bg-white pt-36 md:pt-72 pb-24 text-neutral-900 min-h-screen">
     <div class="max-w-4xl mx-auto px-6">
       <div class="mb-16 animate-fade-in">
-        <h1 class="text-6xl font-black uppercase tracking-tighter mb-8 leading-none">
+        <h1 class="text-6xl font-black uppercase tracking-tighter mb-8 leading-tight">
           ABOUT <span class="text-blue-600">OMEGA</span>
         </h1>
         <div class="w-16 h-1 bg-blue-600 mb-12"></div>
@@ -20,13 +19,16 @@ const aboutText = "Omega Detailing is a premium South African detailing company 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         <div class="space-y-8 text-lg font-light leading-relaxed text-neutral-600">
           <p>
-            {aboutText}
+            Omega Detailing is a premium South African automotive detailing company dedicated to delivering exceptional vehicle care, preservation, and restoration. Driven by a passion for automotive excellence, we provide professional mobile detailing services that bring showroom-quality results directly to your doorstep.
           </p>
           <p>
-            We understand that a luxury car is more than just transportation—it's an investment and a masterpiece. That's why we use only the finest products and techniques to ensure every inch of your car receives the attention it deserves.
+            We understand that a vehicle is more than just transportation—it's an investment, a reflection of its owner, and something worth protecting. Our services are designed to restore, enhance, and preserve every aspect of your vehicle, from deep interior cleaning and paint decontamination to paint correction, ceramic coatings, and long-term surface protection.
           </p>
           <p>
-            As a mobile detailing provider, James prioritizes your convenience without ever compromising on quality. Whether it's a basic refresh or a full-house restoration, James Bell brings professional-grade service directly to your location.
+            Using industry-leading products, advanced techniques, and meticulous attention to detail, we work to improve gloss, clarity, cleanliness, and overall condition while helping to protect your vehicle from everyday wear and environmental damage.
+          </p>
+          <p>
+            As a fully mobile detailing service, Omega Detailing combines convenience with uncompromising quality, delivering professional results wherever your vehicle is located. Whether your car requires routine maintenance, paint enhancement, or comprehensive restoration, we are committed to exceeding expectations and achieving the highest standard of finish.
           </p>
           
           <div class="pt-8 text-center md:text-left">
@@ -46,7 +48,6 @@ const aboutText = "Omega Detailing is a premium South African detailing company 
              </div>
              <h3 class="text-2xl font-black uppercase tracking-widest text-neutral-900">James Bell</h3>
              <p class="text-[10px] text-blue-600 uppercase tracking-[0.3em] font-black">Founder & Lead Detailer</p>
-             <p class="text-neutral-500 font-light italic">"Passionate about the car industry, dedicated to perfection."</p>
           </div>
         </div>
       </div>
@@ -94,12 +95,12 @@ const aboutText = "Omega Detailing is a premium South African detailing company 
       </div>
 
       <div class="max-w-4xl mx-auto px-6 mt-24 space-y-12 text-neutral-600 text-lg leading-relaxed font-light">
-         <h4 class="text-3xl font-black uppercase tracking-tight text-neutral-900 italic">A Necessary Standard for Excellence</h4>
+         <h4 class="text-3xl font-black uppercase tracking-tight text-neutral-900 italic">An Essential Standard for Quality</h4>
          <p>
-           For the luxury car owner, detailing is not a luxury—it is a commitment to excellence. Regular refinement prevents the environmental degradation that dulls the soul of a machine, ensuring that every drive feels as prestigious as the first. 
+           Detailing is an essential standard for keeping your vehicle in peak condition. Regular care protects against environmental wear and tear, ensuring that it looks and feels like new for every journey.
          </p>
          <p>
-           Omega Detailing approaches each session with a mindset of absolute perfection. By choosing this level of care, you are not just maintaining a car; you are preserving a legacy of luxury and ensuring your vehicle remains in its "ultimate state" indefinitely.
+           At Omega Detailing, we approach every job with meticulous care and dedication. Our mobile service is designed to maintain your vehicle’s value, appearance, and overall appeal over the long term.
          </p>
       </div>
     </div>
@@ -115,5 +116,5 @@ const aboutText = "Omega Detailing is a premium South African detailing company 
   .animate-fade-in {
     animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
-  main { font-family: 'Outfit', sans-serif; }
+  main { font-family: 'Inter', sans-serif; }
 </style>

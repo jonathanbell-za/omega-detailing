@@ -1,0 +1,131 @@
+---
+// gallery.astro
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const galleryItems = [
+  {
+    image: '/gallery/mercedes.jpg',
+    title: 'Mercedes-AMG GT Coupe',
+    treatment: 'Full House & 3 Month Ceramic Coating'
+  },
+  {
+    image: '/gallery/porsche.jpg',
+    title: 'Porsche 911 Carrera',
+    treatment: 'Full House & 12 Month Ceramic Coating'
+  },
+  {
+    image: '/gallery/bmw-m2.jpg',
+    title: 'BMW M2',
+    treatment: 'Full House & 3 Year Ceramic Coating'
+  },
+  {
+    image: '/gallery/bmw.jpg',
+    title: 'BMW X7 M60i',
+    treatment: 'Full House & 3 Month Ceramic Coating'
+  },
+  {
+    image: '/gallery/golf.jpg',
+    title: 'Volkswagen Golf 8 R',
+    treatment: 'Premium Detail'
+  },
+  {
+    image: '/gallery/mustang.jpg',
+    title: 'Ford Mustang 5.0 GT',
+    treatment: 'Premium Detail'
+  }
+];
+---
+
+<Layout 
+  title="Work Gallery | Showroom Restorations by Omega Detailing"
+  description="Examine recent premium automotive restorations by James Bell. View before-and-after showroom results of Golf 8 R, Porsche 911, Mustang, BMW X7, AMG GT, and BMW M2."
+>
+  <Navbar />
+  
+  <main class="bg-white pt-40 md:pt-48 pb-32 text-neutral-900 min-h-screen font-sans overflow-x-hidden">
+    <div class="max-w-screen-2xl mx-auto px-6 md:px-12 lg:px-20">
+      
+      {/* Page Header */}
+      <div class="mb-24 animate-fade-in">
+        <h1 class="text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter mb-8 leading-tight">
+          OUR <span class="text-blue-600">GALLERY</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-neutral-500 font-light tracking-wide italic max-w-3xl">
+          A showcase of deliberate precision. Explore our showroom restorations and premium detailing treatments on South Africa's finest vehicles.
+        </p>
+        <div class="w-24 h-2 bg-blue-600 mt-12"></div>
+      </div>
+
+      {/* Gallery Showcase Grid */}
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        {galleryItems.map(item => (
+          <div class="group bg-white border border-neutral-200 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 flex flex-col justify-between hover:border-blue-600/40">
+            <div>
+              {/* Image Box */}
+              <div class="overflow-hidden relative aspect-[4/3] bg-neutral-100">
+                <img 
+                  src={item.image} 
+                  alt={item.title} 
+                  class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                  loading="lazy"
+                />
+              </div>
+              
+              {/* Text Box */}
+              <div class="p-8 space-y-4">
+                <h3 class="text-2xl md:text-3xl font-black uppercase tracking-tight text-neutral-950 group-hover:text-blue-600 transition-colors duration-300">
+                  {item.title}
+                </h3>
+                <div class="w-10 h-0.5 bg-blue-600/30 group-hover:w-16 transition-all duration-500"></div>
+                <p class="text-[10px] font-black text-blue-600 uppercase tracking-widest bg-blue-50 px-4 py-2 inline-block rounded-xl border border-blue-100 mt-2">
+                  {item.treatment}
+                </p>
+              </div>
+            </div>
+            
+            {/* Bottom Action */}
+            <div class="px-8 pb-8 pt-2 border-t border-neutral-100/50">
+              <a href="/pricing" class="inline-flex items-center text-xs font-black uppercase tracking-widest text-neutral-800 group-hover:text-blue-600 transition-colors duration-300">
+                View Treatment Pricing &rarr;
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Call to Action Booking */}
+      <div class="mt-32 p-12 md:p-20 bg-neutral-50 border border-neutral-200 rounded-3xl text-center space-y-8 max-w-4xl mx-auto shadow-sm">
+        <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tight text-neutral-950 leading-tight">
+          Ready for a <span class="text-blue-600">Showroom Reset</span>?
+        </h2>
+        <p class="text-neutral-500 font-light leading-relaxed max-w-xl mx-auto">
+          Contact James Bell today to consult on the best detailing, correction, or ceramic coating packages for your vehicle.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-6 justify-center pt-4">
+          <a href="https://wa.me/27605670893" target="_blank" rel="noopener noreferrer" class="px-10 py-5 bg-blue-600 hover:bg-neutral-900 text-white font-black uppercase tracking-widest text-xs rounded-xl shadow-xl shadow-blue-600/20 transition-all duration-300">
+            Book via WhatsApp
+          </a>
+          <a href="/pricing" class="px-10 py-5 border-2 border-neutral-200 hover:border-blue-600 hover:text-blue-600 text-neutral-900 font-black uppercase tracking-widest text-xs rounded-xl transition-all duration-300">
+            Explore Packages
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+  
+  <Footer />
+
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+      animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    main { font-family: 'Inter', sans-serif; }
+  </style>
+</Layout>

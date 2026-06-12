@@ -18,7 +18,7 @@ const packages = [
   {
     id: 'premium',
     name: 'Premium',
-    description: 'Our most popular package with focused detailing for every corner.',
+    description: 'A comprehensive package offering focused care and detailing for your entire vehicle.',
     features: ['Pre-wash', 'Focused wheel cleaning', 'Wash and dry', 'Interior detailing', 'Vacuuming'],
     time: '1.5 to 2 hours',
     pricing: {
@@ -26,13 +26,13 @@ const packages = [
       suvSedan: 600,
       truckVan: 650
     },
-    popular: true,
+    popular: false,
     icon: 'star'
   },
   {
     id: 'fullhouse',
     name: 'Full House',
-    description: 'The ultimate deep cleaning and decontamination package.',
+    description: 'Our most popular deep cleaning and ultimate decontamination package.',
     features: ['Pre wash', 'Deep wheel cleaning', 'Engine bay detailing', 'Wash and dry', 'Paint decontamination', 'Deep interior detail', 'Vacuuming', 'Final touches'],
     time: '2.5 to 3 hours',
     pricing: {
@@ -40,74 +40,79 @@ const packages = [
       suvSedan: 900,
       truckVan: 950
     },
-    popular: false,
+    popular: true,
     icon: 'home'
   }
 ];
 
-const specializedPackages = [
-  {
-    id: 'exterior',
-    name: 'Exterior Detail',
-    description: 'Focused exclusively on restoring and protecting the exterior surfaces.',
-    features: ['Pre wash', 'Deep wheel cleaning', 'Engine bay detail', 'Thorough wash and dry', 'Paint decontamination', 'Plastic trim restoration', 'Wax', 'Ceramic Sealant'],
-    time: '2 to 2.5 hours',
-    pricing: {
-      hatchback: 700,
-      suvSedan: 750,
-      truckVan: 800
-    },
-    icon: 'shimmer'
+const revivePackage = {
+  id: 'revive-protect',
+  name: 'Revive & Protect',
+  description: 'A complete all-in-one restoration and protection package. Combines a thorough deep interior and exterior detail with 1-step paint correction and 12-month ceramic protection.',
+  features: [
+    'Deep interior detail',
+    'Deep exterior detail',
+    '1 step paint correction',
+    '12 month ceramic coating'
+  ],
+  time: '6 to 7 hours',
+  pricing: {
+    hatchback: 3000,
+    suvSedan: 3000,
+    truckVan: 3000
   },
-  {
-    id: 'interior',
-    name: 'Interior Detail',
-    description: 'A deep restorative clean for the entire cabin.',
-    features: ['Thorough vacuuming', 'Stain removal', 'Carpet shampoo', 'Deep interior detailing', 'Deep seat cleaning', 'Trim restoration', 'Meticulous finishing'],
-    time: '2 to 2.5 hours',
-    pricing: {
-      hatchback: 700,
-      suvSedan: 750,
-      truckVan: 800
-    },
-    icon: 'armchair'
-  }
-];
+  popular: false,
+  icon: 'shield'
+};
+
+const omegaDetailPackage = {
+  id: 'omega-detail',
+  name: 'The Omega Detail',
+  description: 'The ultimate masterclass in vehicle transformation. Over 2 to 3 days of intensive labor, this package completely resets your vehicle to a pristine, showroom-quality state. Every square inch, surface, and material is fully restored, decontaminated, and corrected to near-perfection before being locked in under a 5-year professional ceramic protection shield. This service is designed to reverse years of wear and environmental degradation, leaving you with a vehicle that looks, feels, and smells brand new.',
+  features: [
+    'Full Interior Restoration',
+    'Full Exterior Restoration',
+    'Multi-Stage Paint Correction',
+    '5-Year Ceramic Coating protection',
+    "James' full skill & potential dedicated to the job",
+    'A completely transformed vehicle inside and out'
+  ],
+  time: '2 to 3 days',
+  pricing: {
+    hatchback: 9000,
+    suvSedan: 9000,
+    truckVan: 9000
+  },
+  popular: false,
+  icon: 'crown'
+};
 
 const additionalOptions = [
   {
     id: 'paint-correction',
     name: 'Paint Correction',
-    description: 'Removing swirls and scratches to restore paint clarity.',
+    description: 'Machine polishing process that removes swirl marks, light scratches, oxidation, and paint imperfections to restore gloss and clarity.',
     options: [
-      { label: 'One Step Correction (2-2.5h)', hatchback: 1000, suvSedan: 1100, truckVan: 1200 },
-      { label: 'Two Step Correction (3-4h)', hatchback: 1700, suvSedan: 1800, truckVan: 1900 }
+      { label: 'One Step Correction (2-2.5h)', hatchback: 1350, suvSedan: 1500, truckVan: 1750 },
+      { label: 'Two Step Correction (3-4h)', hatchback: 2150, suvSedan: 2300, truckVan: 2450 }
     ]
   },
   {
     id: 'ceramic-coating',
     name: 'Ceramic Coating',
-    description: 'Nano-technology glass shield for ultimate protection.',
+    description: "A durable protective coating that bonds to your vehicle's paint, providing long-lasting shine, water repellency, and protection from environmental contaminants.",
     options: [
       { label: '3 Month Coating', price: 400 },
       { label: '12 Month Coating', price: 1000 },
       { label: '3 Year Coating', price: 3500 },
-      { label: '5 Year Coating', price: 5200 }
+      { label: '5 Year Coating', price: 5000 }
     ]
   },
   {
     id: 'decontamination',
     name: 'Paint Decontamination',
-    time: '30 - 40 mins',
+    description: 'A deep-cleaning process that removes embedded contaminants such as tar, iron particles, tree sap, and industrial fallout, leaving the paint smooth and ready for polishing or protection.',
     pricing: { hatchback: 250, suvSedan: 300, truckVan: 350 }
-  },
-  {
-    id: 'upholstery',
-    name: 'Upholstery Cleaning',
-    description: 'Deep restorative extraction for seats and floor surfaces.',
-    time: 'Variable time',
-    seatPrice: 75,
-    matPrice: 30
   }
 ];
 
@@ -122,7 +127,9 @@ const icons = {
   star: `<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.175 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" /></svg>`,
   home: `<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>`,
   shimmer: `<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>`,
-  armchair: `<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7" /></svg>`
+  armchair: `<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7" /></svg>`,
+  shield: `<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>`,
+  crown: `<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3L16 7L21 4L19 17H5L3 4L8 7L12 3Z M5 17L12 21L19 17" /></svg>`
 };
 ---
 
@@ -130,23 +137,29 @@ const icons = {
   <div class="max-w-7xl mx-auto px-6 relative z-10">
     <div class="text-center mb-24 space-y-6">
 
-      <h2 class="text-6xl md:text-7xl font-black text-neutral-900 uppercase tracking-tighter leading-none">
+      <h2 class="text-6xl md:text-7xl font-black text-neutral-900 uppercase tracking-tighter leading-tight">
         CHOOSE YOUR <span class="text-blue-600">PACKAGE</span>
       </h2>
 
     </div>
 
+    {/* Main Packages Header */}
+    <div class="text-center mb-20">
+       <h3 class="text-4xl font-black uppercase tracking-tight text-neutral-900 mb-4">Maintenance <span class="text-blue-600">Packages</span></h3>
+       <div class="w-16 h-1 bg-blue-600 mx-auto"></div>
+    </div>
+
     {/* Main Packages */}
     <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-32">
       {packages.map((pkg) => (
-        <div class={`package-card relative flex flex-col p-10 bg-white border-2 ${pkg.popular ? 'border-blue-600 shadow-xl shadow-blue-600/10' : 'border-neutral-200'} transition-all duration-300 group overflow-hidden`} data-pkg={JSON.stringify(pkg)}>
+        <div class={`package-card relative flex flex-col p-10 bg-white border-2 ${pkg.popular ? 'border-blue-600 shadow-xl shadow-blue-600/10' : 'border-neutral-200'} rounded-2xl transition-all duration-300 group overflow-hidden`} data-pkg={JSON.stringify(pkg)}>
           {pkg.popular && (
             <div class="absolute top-0 right-0 bg-blue-600 text-white text-[10px] font-black uppercase tracking-[0.2em] px-8 py-2 transform translate-x-[35%] translate-y-[100%] rotate-45">
               POPULAR
             </div>
           )}
           
-          <div class="mb-10">
+          <div class="mb-10 md:min-h-[220px]">
             <div class="text-blue-600 mb-6 group-hover:scale-105 transition-transform" set:html={icons[pkg.icon]} />
             <h3 class="text-4xl font-black uppercase tracking-wider mb-4 border-b-2 border-neutral-100 pb-4">{pkg.name}</h3>
             <p class="text-neutral-600 font-light leading-relaxed text-sm">{pkg.description}</p>
@@ -155,7 +168,7 @@ const icons = {
           <div class="space-y-6 mb-12">
             <div>
               <label class="text-[10px] font-black text-blue-600 uppercase tracking-widest mb-2 block">Vehicle Size</label>
-              <select class="pkg-size-selector w-full bg-neutral-50 border border-neutral-200 p-4 text-neutral-900 font-bold uppercase tracking-widest text-xs outline-none focus:border-blue-600 transition-all rounded-none appearance-none cursor-pointer">
+              <select class="pkg-size-selector w-full bg-neutral-50 border border-neutral-200 p-4 text-neutral-900 font-bold uppercase tracking-widest text-xs outline-none focus:border-blue-600 transition-all rounded-xl appearance-none cursor-pointer">
                 {vehicleTypes.map(type => (
                   <option value={type.id}>{type.label}</option>
                 ))}
@@ -168,7 +181,7 @@ const icons = {
             </div>
           </div>
 
-          <div class="mb-12 space-y-4">
+          <div class="mb-12 space-y-4 md:min-h-[280px]">
             <h4 class="text-xs font-black text-neutral-900 uppercase tracking-widest border-l-4 border-blue-600 pl-4 mb-6">What's Included</h4>
             <ul class="space-y-3">
               {pkg.features.map(f => (
@@ -185,7 +198,7 @@ const icons = {
               <span>Duration</span>
               <span class="text-neutral-900">{pkg.time}</span>
             </div>
-            <button class="add-package-to-cart w-full py-6 bg-blue-600 text-white font-black uppercase tracking-widest hover:bg-neutral-900 transition-all shadow-lg hover:shadow-neutral-900/20">
+            <button class="add-package-to-cart w-full py-6 bg-blue-600 text-white font-black uppercase tracking-widest hover:bg-neutral-900 transition-all shadow-lg hover:shadow-neutral-900/20 rounded-xl">
               Add to Cart
             </button>
           </div>
@@ -193,126 +206,184 @@ const icons = {
       ))}
     </div>
 
-    {/* Specialized Header */}
-    <div class="text-center mb-20">
-       <h3 class="text-4xl font-black uppercase tracking-tight text-neutral-900 mb-4">Focused <span class="text-blue-600">Detailing</span></h3>
-       <div class="w-16 h-1 bg-blue-600 mx-auto"></div>
-    </div>
+    {/* Revive & Protect Package (Full Width) */}
+    <div class="package-card relative flex flex-col md:flex-row gap-10 p-10 bg-white border-2 border-blue-600 shadow-xl shadow-blue-600/5 rounded-2xl transition-all duration-300 group overflow-hidden mb-32" data-pkg={JSON.stringify(revivePackage)}>
+      <div class="absolute top-0 right-0 bg-blue-600 text-white text-[10px] font-black uppercase tracking-[0.2em] px-8 py-2 transform translate-x-[35%] translate-y-[100%] rotate-45">
+        GOOD VALUE
+      </div>
+      
+      <div class="md:w-1/2 flex flex-col justify-between">
+        <div>
+          <div class="text-blue-600 mb-6 group-hover:scale-105 transition-transform" set:html={icons[revivePackage.icon]} />
+          <h3 class="text-4xl md:text-5xl font-black uppercase tracking-wider mb-4 border-b-2 border-neutral-100 pb-4">{revivePackage.name}</h3>
+          <p class="text-neutral-600 font-light leading-relaxed text-sm mb-8">{revivePackage.description}</p>
+        </div>
 
-    {/* Specialized Packages */}
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-32">
-      {specializedPackages.map((pkg) => (
-        <div class="package-card relative flex flex-col lg:flex-row gap-8 p-10 bg-white border border-neutral-200 group hover:shadow-2xl transition-all" data-pkg={JSON.stringify(pkg)}>
-          <div class="lg:w-1/2 flex flex-col">
-            <div class="text-blue-600 mb-8" set:html={icons[pkg.icon]} />
-            <h3 class="text-3xl font-black uppercase tracking-tight mb-4">{pkg.name}</h3>
-            <p class="text-neutral-600 text-sm font-light leading-relaxed mb-10">{pkg.description}</p>
-            
-            <div class="mt-auto space-y-3">
-              {pkg.features.slice(0, 4).map(f => (
-                <div class="text-[10px] text-neutral-400 font-bold uppercase tracking-widest flex items-center gap-2">
-                   <div class="w-1 h-1 bg-blue-600"></div>{f}
-                </div>
-              ))}
+        <div class="space-y-4">
+          <h4 class="text-xs font-black text-neutral-900 uppercase tracking-widest border-l-4 border-blue-600 pl-4 mb-6">What's Included</h4>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {revivePackage.features.map(f => (
+              <li class="flex items-center gap-3 text-neutral-600 text-sm capitalize">
+                <div class="w-2 h-2 bg-blue-600 rounded-none transform rotate-45 flex-shrink-0"></div>
+                {f}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div class="md:w-1/2 flex flex-col justify-between border-t md:border-t-0 md:border-l border-neutral-200 pt-10 md:pt-0 md:pl-10">
+        <div class="space-y-8">
+          <div>
+            <label class="text-[10px] font-black text-blue-600 uppercase tracking-widest mb-2 block">Vehicle Size</label>
+            <div class="bg-neutral-50 border border-neutral-200 p-4 text-neutral-950 font-black uppercase tracking-widest text-xs rounded-xl">
+              For all sizes
             </div>
           </div>
           
-          <div class="lg:w-1/2 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-neutral-100 pt-10 lg:pt-0 lg:pl-10">
-            <div class="space-y-6">
-              <label class="text-[10px] font-black text-blue-600 uppercase tracking-widest block">Vehicle Size</label>
-              <select class="pkg-size-selector w-full bg-neutral-50 border border-neutral-200 p-4 text-neutral-900 font-bold outline-none">
-                {vehicleTypes.map(type => (
-                  <option value={type.id}>{type.label}</option>
-                ))}
-              </select>
-              <div class="flex justify-between items-end pb-4 border-b border-neutral-100">
-                 <span class="text-neutral-400 text-xs font-bold uppercase">Pricing</span>
-                 <span class="current-price text-4xl font-black text-neutral-900">R{pkg.pricing.hatchback}</span>
-              </div>
-              <div class="flex justify-between items-center mt-6 text-[10px] font-bold uppercase tracking-widest text-neutral-400">
-                <span>Estimated Duration</span>
-                <span class="text-neutral-900 font-black">{pkg.time}</span>
-              </div>
-            </div>
-
-            <button class="add-package-to-cart w-full py-5 bg-neutral-900 text-white font-black uppercase tracking-widest hover:bg-blue-600 transition-all mt-6">
-              Add to Cart
-            </button>
+          <div class="flex justify-between items-end border-b-2 border-neutral-50 pb-4">
+             <span class="text-neutral-400 text-xs font-bold uppercase tracking-widest">Total cost</span>
+             <span class="current-price text-5xl md:text-6xl font-black text-neutral-900 transition-colors group-hover:text-blue-600">R{revivePackage.pricing.hatchback}</span>
           </div>
         </div>
-      ))}
+
+        <div class="mt-8 space-y-6">
+          <div class="text-[10px] font-bold uppercase tracking-widest text-neutral-400 flex justify-between">
+            <span>Duration</span>
+            <span class="text-neutral-900">{revivePackage.time}</span>
+          </div>
+          <button class="add-package-to-cart w-full py-6 bg-blue-600 text-white font-black uppercase tracking-widest hover:bg-neutral-900 transition-all shadow-lg hover:shadow-neutral-900/20 rounded-xl">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
+    {/* Additional Options Header */}
+    <div class="text-center mb-20 mt-12">
+       <h3 class="text-4xl font-black uppercase tracking-tight text-neutral-900 mb-4">Additional <span class="text-blue-600">Options</span></h3>
+       <div class="w-16 h-1 bg-blue-600 mx-auto"></div>
     </div>
 
     {/* Additional Grid */}
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {additionalOptions.map((opt) => (
-        <div class="option-card p-10 bg-white border border-neutral-200 hover:border-blue-600 transition-all group flex flex-col shadow-sm" data-opt={JSON.stringify(opt)}>
-          <h4 class="text-2xl font-black uppercase tracking-wider mb-4 text-neutral-900 group-hover:text-blue-600">{opt.name}</h4>
+        <div class="option-card p-10 bg-white border border-neutral-200 hover:border-blue-600 rounded-2xl transition-all group flex flex-col shadow-sm" data-opt={JSON.stringify(opt)}>
+          <div class="mb-6 md:min-h-[140px]">
+            <h4 class="text-2xl font-black uppercase tracking-wider mb-2 text-neutral-900 group-hover:text-blue-600">{opt.name}</h4>
+            {opt.description && <p class="text-neutral-700 font-medium text-xs leading-relaxed">{opt.description}</p>}
+          </div>
           
           {opt.options ? (
-            <div class="space-y-6 mb-10">
-              <select class="opt-type-selector w-full bg-neutral-50 border border-neutral-200 p-3 text-xs font-bold text-neutral-900 uppercase">
-                {opt.options.map((o, i) => (
-                  <option value={i}>{o.label}</option>
-                ))}
-              </select>
-              {opt.id === 'paint-correction' && (
-                <select class="opt-size-selector w-full bg-neutral-50 border border-neutral-200 p-3 text-[10px] font-bold text-neutral-600 uppercase tracking-widest outline-none">
-                  {vehicleTypes.map(type => (
-                    <option value={type.id}>{type.label}</option>
+            <div class="space-y-6 mb-10 flex-grow flex flex-col justify-between">
+              <div class="space-y-3 md:min-h-[100px] flex flex-col justify-end">
+                <select class="opt-type-selector w-full bg-neutral-50 border border-neutral-200 p-3 text-xs font-bold text-neutral-900 uppercase rounded-xl">
+                  {opt.options.map((o, i) => (
+                    <option value={i}>{o.label}</option>
                   ))}
                 </select>
-              )}
-              <div class="text-4xl font-black text-blue-600 current-opt-price">
+                {opt.id === 'paint-correction' && (
+                  <select class="opt-size-selector w-full bg-neutral-50 border border-neutral-200 p-3 text-[10px] font-bold text-neutral-600 uppercase tracking-widest outline-none rounded-xl">
+                    {vehicleTypes.map(type => (
+                      <option value={type.id}>{type.label}</option>
+                    ))}
+                  </select>
+                )}
+              </div>
+              <div class="text-4xl font-black text-blue-600 current-opt-price mt-auto">
                 R{opt.id === 'paint-correction' ? opt.options[0].hatchback : opt.options[0].price}
               </div>
             </div>
           ) : (
-            <div class="mb-10">
-              <p class="text-[10px] font-black text-neutral-400 uppercase tracking-[0.2em] mb-4">{opt.time}</p>
-              {opt.id === 'upholstery' ? (
-                <div class="space-y-6">
-                  <div class="flex flex-col gap-2">
-                    <label class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">Seats (R75 ea)</label>
-                    <select class="uph-seats-selector w-full bg-neutral-50 border border-neutral-200 p-2 text-xs text-neutral-900 font-bold">
-                      {[0,1,2,3,4,5,6,7,8].map(n => <option value={n}>{n} Seats</option>)}
-                    </select>
-                  </div>
-                  <div class="flex flex-col gap-2">
-                    <label class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">Floormats (R30 ea)</label>
-                    <select class="uph-mats-selector w-full bg-neutral-50 border border-neutral-200 p-2 text-xs text-neutral-900 font-bold">
-                      {[0,1,2,3,4,5,6,7,8].map(n => <option value={n}>{n} Mats</option>)}
-                    </select>
-                  </div>
-                  <div class="text-4xl font-black text-blue-600 current-opt-price">R0</div>
-                </div>
-              ) : opt.pricing ? (
-                 <div class="space-y-4">
-                    <select class="opt-size-selector w-full bg-neutral-50 border border-neutral-200 p-3 text-[10px] text-neutral-900 font-bold uppercase tracking-widest outline-none">
-                      {vehicleTypes.map(type => (
-                        <option value={type.id}>{type.label}</option>
-                      ))}
-                    </select>
-                    <div class="text-4xl font-black text-blue-600 current-opt-price">R{opt.pricing.hatchback}</div>
+            <div class="mb-10 flex-grow flex flex-col justify-between">
+              {opt.time && <p class="text-[10px] font-black text-neutral-400 uppercase tracking-[0.2em] mb-4">{opt.time}</p>}
+              {opt.pricing && (
+                 <div class="space-y-6 flex-grow flex flex-col justify-between">
+                   <div class="space-y-3 md:min-h-[100px] flex flex-col justify-end">
+                      <select class="opt-size-selector w-full bg-neutral-50 border border-neutral-200 p-3 text-[10px] text-neutral-900 font-bold uppercase tracking-widest outline-none rounded-xl">
+                        {vehicleTypes.map(type => (
+                          <option value={type.id}>{type.label}</option>
+                        ))}
+                      </select>
+                   </div>
+                   <div class="text-4xl font-black text-blue-600 current-opt-price mt-auto">R{opt.pricing.hatchback}</div>
                  </div>
-              ) : (
-                <div class="text-blue-600 italic font-light text-sm mb-4">Variable Pricing (Contact Us)</div>
               )}
             </div>
           )}
           
-          <button class="add-option-to-cart mt-auto w-full py-4 border-2 border-neutral-200 text-neutral-900 font-black uppercase tracking-widest hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all">
+          <button class="add-option-to-cart mt-auto w-full py-4 border-2 border-neutral-200 text-neutral-900 font-black uppercase tracking-widest hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all rounded-xl">
             Add to Cart
           </button>
         </div>
       ))}
     </div>
+
+    {/* The Omega Detail Header */}
+    <div class="text-center mb-20 mt-32">
+       <h3 class="text-4xl md:text-5xl font-black uppercase tracking-tight text-neutral-900 mb-4">The <span class="text-blue-600">Omega Detail</span></h3>
+       <div class="w-16 h-1 bg-blue-600 mx-auto"></div>
+    </div>
+
+    {/* The Omega Detail Package (Full Width, Flagship Dark Card) */}
+    <a href="/omega-detail" class="relative flex flex-col md:flex-row gap-10 p-10 bg-neutral-950 text-white border-2 border-blue-600 shadow-2xl shadow-blue-600/10 hover:shadow-blue-600/25 transition-all duration-300 group overflow-hidden mb-32 rounded-2xl cursor-pointer hover:-translate-y-1 block">
+      <div class="absolute top-0 right-0 bg-blue-600 text-white text-[10px] font-black uppercase tracking-[0.2em] px-8 py-2 transform translate-x-[35%] translate-y-[100%] rotate-45">
+        ULTIMATE FLAGSHIP
+      </div>
+      
+      <div class="md:w-1/2 flex flex-col justify-between">
+        <div>
+          <div class="text-blue-500 mb-6 group-hover:scale-105 transition-transform" set:html={icons[omegaDetailPackage.icon]} />
+          <h3 class="text-4xl md:text-5xl font-black uppercase tracking-wider mb-4 border-b-2 border-neutral-800 pb-4 text-white group-hover:text-blue-500 transition-colors">{omegaDetailPackage.name}</h3>
+          <p class="text-neutral-400 font-light leading-relaxed text-sm mb-4">{omegaDetailPackage.description}</p>
+          <span class="text-blue-500 font-bold group-hover:text-white transition-colors text-sm underline block mb-8">Read about our intensive 3-Day Process &rarr;</span>
+        </div>
+
+        <div class="space-y-4">
+          <h4 class="text-xs font-black text-white uppercase tracking-widest border-l-4 border-blue-600 pl-4 mb-6">What's Included</h4>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {omegaDetailPackage.features.map(f => (
+              <li class="flex items-center gap-3 text-neutral-300 text-sm">
+                <div class="w-2 h-2 bg-blue-500 rounded-none transform rotate-45 flex-shrink-0"></div>
+                {f}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div class="md:w-1/2 flex flex-col justify-between border-t md:border-t-0 md:border-l border-neutral-800 pt-10 md:pt-0 md:pl-10">
+        <div class="space-y-8">
+          <div>
+            <label class="text-[10px] font-black text-blue-500 uppercase tracking-widest mb-2 block">Vehicle Size</label>
+            <div class="bg-neutral-900 border border-neutral-800 p-4 text-white font-black uppercase tracking-widest text-xs rounded-xl">
+              For all sizes
+            </div>
+          </div>
+          
+          <div class="flex justify-between items-end border-b-2 border-neutral-800 pb-4">
+             <span class="text-neutral-500 text-xs font-bold uppercase tracking-widest">Total cost</span>
+             <span class="current-price text-5xl md:text-6xl font-black text-white transition-colors group-hover:text-blue-500">R{omegaDetailPackage.pricing.hatchback}</span>
+          </div>
+        </div>
+
+        <div class="mt-8 space-y-6">
+          <div class="text-[10px] font-bold uppercase tracking-widest text-neutral-500 flex justify-between">
+            <span>Duration</span>
+            <span class="text-white font-bold">{omegaDetailPackage.time}</span>
+          </div>
+          <div class="w-full py-6 bg-blue-600 text-white font-black uppercase tracking-widest text-center group-hover:bg-white group-hover:text-neutral-900 transition-all shadow-lg group-hover:shadow-white/10 rounded-xl text-xs font-bold">
+            View 3-Day Process & Book
+          </div>
+        </div>
+      </div>
+    </a>
   </div>
 </section>
 
 {/* Premium Toast */}
 <div id="toast" class="fixed bottom-10 right-10 z-[100] translate-y-20 opacity-0 transition-all duration-500 pointer-events-none">
-  <div class="bg-blue-600 text-white px-10 py-5 font-black uppercase tracking-widest text-xs flex items-center gap-6 shadow-2xl border border-white/20">
+  <div class="bg-blue-600 text-white px-10 py-5 font-black uppercase tracking-widest text-xs flex items-center gap-6 shadow-2xl border border-white/20 rounded-xl">
     <div class="p-2 bg-white/20 rounded-full">
       <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" /></svg>
     </div>
@@ -352,8 +423,9 @@ const icons = {
     });
 
     btn?.addEventListener('click', () => {
-      const sizeLabel = selector.options[selector.selectedIndex].text;
-      updateCart(`${pkg.name} (${sizeLabel})`, pkg.pricing[selector.value]);
+      const sizeLabel = selector ? selector.options[selector.selectedIndex].text : 'All Sizes';
+      const priceVal = selector ? pkg.pricing[selector.value] : pkg.pricing['hatchback'];
+      updateCart(`${pkg.name} (${sizeLabel})`, priceVal);
     });
   });
 
@@ -376,11 +448,6 @@ const icons = {
       } else if (opt.id === 'ceramic-coating') {
         const typeIdx = typeSelector.value;
         priceDisplay.textContent = `R${opt.options[typeIdx].price}`;
-      } else if (opt.id === 'upholstery') {
-        const seats = card.querySelector('.uph-seats-selector').value;
-        const mats = card.querySelector('.uph-mats-selector').value;
-        const total = (seats * opt.seatPrice) + (mats * opt.matPrice);
-        priceDisplay.textContent = `R${total}`;
       } else if (opt.pricing) {
         priceDisplay.textContent = `R${opt.pricing[sizeSelector.value]}`;
       }
@@ -388,8 +455,6 @@ const icons = {
 
     typeSelector?.addEventListener('change', updatePrice);
     sizeSelector?.addEventListener('change', updatePrice);
-    card.querySelector('.uph-seats-selector')?.addEventListener('change', updatePrice);
-    card.querySelector('.uph-mats-selector')?.addEventListener('change', updatePrice);
 
     btn?.addEventListener('click', () => {
       let finalName = opt.name;
@@ -404,15 +469,6 @@ const icons = {
         const typeLabel = typeSelector.options[typeSelector.selectedIndex].text;
         finalName = `${opt.name}: ${typeLabel}`;
         finalPrice = opt.options[typeSelector.value].price;
-      } else if (opt.id === 'upholstery') {
-        const seats = card.querySelector('.uph-seats-selector').value;
-        const mats = card.querySelector('.uph-mats-selector').value;
-        finalPrice = (seats * opt.seatPrice) + (mats * opt.matPrice);
-        finalName = `${opt.name} (${seats} Seats, ${mats} Mats)`;
-        if (finalPrice === 0) {
-          alert("Please select at least one seat or mat.");
-          return;
-        }
       } else if (opt.pricing) {
         const sizeLabel = sizeSelector.options[sizeSelector.selectedIndex].text;
         finalName = `${opt.name} (${sizeLabel})`;
@@ -426,7 +482,7 @@ const icons = {
 
 <style>
   #pricing {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
   }
   
   select {
