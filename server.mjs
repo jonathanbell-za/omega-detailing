@@ -24,41 +24,57 @@ const MIME_TYPES = {
   '.webmanifest': 'application/manifest+json',
 };
 
-async function tryServe(filePath) {
+async function resolveFile(pathname) {
+  const filePath = join(ROOT, pathname);
+
   try {
     const info = await stat(filePath);
+
+    // If it's a file, serve it directly
     if (info.isFile()) {
-      const content = await readFile(filePath);
-      const ext = extname(filePath).toLowerCase();
-      return { content, mime: MIME_TYPES[ext] || 'application/octet-stream' };
+      return filePath;
     }
+
+    // If it's a directory, look for index.html inside it
     if (info.isDirectory()) {
       const indexPath = join(filePath, 'index.html');
-      const content = await readFile(indexPath);
-      return { content, mime: 'text/html' };
+      await stat(indexPath); // throws if not found
+      return indexPath;
     }
   } catch {
-    return null;
+    // not found at this path
   }
+
+  // Try appending .html
+  try {
+    const htmlPath = filePath + '.html';
+    const info = await stat(htmlPath);
+    if (info.isFile()) return htmlPath;
+  } catch {
+    // not found
+  }
+
   return null;
 }
 
 const server = createServer(async (req, res) => {
   const url = new URL(req.url, `http://localhost:${PORT}`);
-  let pathname = decodeURIComponent(url.pathname);
+  const pathname = decodeURIComponent(url.pathname);
 
-  // Try the exact path, then as directory with index.html, then .html extension
-  const filePath = join(ROOT, pathname);
-  const result =
-    (await tryServe(filePath)) ||
-    (await tryServe(filePath + '.html')) ||
-    (await tryServe(join(ROOT, '404.html')));
+  let resolved = await resolveFile(pathname);
+  let statusCode = 200;
 
-  if (result) {
-    res.writeHead(result === (await tryServe(join(ROOT, '404.html'))) ? 404 : 200, {
-      'Content-Type': result.mime,
-    });
-    res.end(result.content);
+  if (!resolved) {
+    resolved = await resolveFile('/404.html');
+    statusCode = resolved ? 404 : 404;
+  }
+
+  if (resolved) {
+    const ext = extname(resolved).toLowerCase();
+    const mime = MIME_TYPES[ext] || 'application/octet-stream';
+    const content = await readFile(resolved);
+    res.writeHead(statusCode, { 'Content-Type': mime });
+    res.end(content);
   } else {
     res.writeHead(404, { 'Content-Type': 'text/plain' });
     res.end('Not Found');
