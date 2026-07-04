@@ -25,6 +25,9 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Prepare deployment package
+        run: cp server.mjs dist/
+
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
