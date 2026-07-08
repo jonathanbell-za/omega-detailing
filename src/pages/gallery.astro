@@ -4,37 +4,16 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 
-const galleryItems = [
-  {
-    image: '/gallery/mercedes.jpg',
-    title: 'Mercedes-AMG GT Coupe',
-    treatment: 'Full House & 3 Month Ceramic Coating'
-  },
-  {
-    image: '/gallery/porsche.jpg',
-    title: 'Porsche 911 Carrera',
-    treatment: 'Full House & 12 Month Ceramic Coating'
-  },
-  {
-    image: '/gallery/bmw-m2.jpg',
-    title: 'BMW M2',
-    treatment: 'Full House & 3 Year Ceramic Coating'
-  },
-  {
-    image: '/gallery/bmw.jpg',
-    title: 'BMW X7 M60i',
-    treatment: 'Full House & 3 Month Ceramic Coating'
-  },
-  {
-    image: '/gallery/golf.jpg',
-    title: 'Volkswagen Golf 8 R',
-    treatment: 'Premium Detail'
-  },
-  {
-    image: '/gallery/mustang.jpg',
-    title: 'Ford Mustang 5.0 GT',
-    treatment: 'Premium Detail'
-  }
+const galleryImages = [
+  '/gallery/mercedes.jpg',
+  '/gallery/porsche.jpg',
+  '/gallery/bmw-m2.jpg',
+  '/gallery/bmw.jpg',
+  '/gallery/golf.jpg',
+  '/gallery/mustang.jpg',
+  '/gallery/nissan-370z.jpg',
+  '/gallery/bmw-dark-suv.jpg',
+  '/gallery/bmw-white-sedan.jpg'
 ];
 ---
 
@@ -58,39 +37,16 @@ const galleryItems = [
         <div class="w-24 h-2 bg-blue-600 mt-12"></div>
       </div>
 
-      {/* Gallery Showcase Grid */}
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        {galleryItems.map(item => (
-          <div class="group bg-white border border-neutral-200 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 flex flex-col justify-between hover:border-blue-600/40">
-            <div>
-              {/* Image Box */}
-              <div class="overflow-hidden relative aspect-[4/3] bg-neutral-100">
-                <img 
-                  src={item.image} 
-                  alt={item.title} 
-                  class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                  loading="lazy"
-                />
-              </div>
-              
-              {/* Text Box */}
-              <div class="p-8 space-y-4">
-                <h3 class="text-2xl md:text-3xl font-black uppercase tracking-tight text-neutral-950 group-hover:text-blue-600 transition-colors duration-300">
-                  {item.title}
-                </h3>
-                <div class="w-10 h-0.5 bg-blue-600/30 group-hover:w-16 transition-all duration-500"></div>
-                <p class="text-[10px] font-black text-blue-600 uppercase tracking-widest bg-blue-50 px-4 py-2 inline-block rounded-xl border border-blue-100 mt-2">
-                  {item.treatment}
-                </p>
-              </div>
-            </div>
-            
-            {/* Bottom Action */}
-            <div class="px-8 pb-8 pt-2 border-t border-neutral-100/50">
-              <a href="/pricing" class="inline-flex items-center text-xs font-black uppercase tracking-widest text-neutral-800 group-hover:text-blue-600 transition-colors duration-300">
-                View Treatment Pricing &rarr;
-              </a>
-            </div>
+      {/* Gallery Showcase Masonry Collage */}
+      <div class="columns-1 sm:columns-2 lg:columns-3 gap-6 max-w-7xl mx-auto space-y-6">
+        {galleryImages.map(image => (
+          <div class="break-inside-avoid overflow-hidden rounded-3xl border border-neutral-100 shadow-md hover:shadow-2xl transition-all duration-500 group relative cursor-pointer bg-neutral-100 mb-6">
+            <img 
+              src={image} 
+              alt="Showroom Restorations by Omega Detailing" 
+              class="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              loading="lazy"
+            />
           </div>
         ))}
       </div>
