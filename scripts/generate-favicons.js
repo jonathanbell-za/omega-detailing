@@ -2,32 +2,6 @@ import fs from 'fs';
 import path from 'path';
 import sharp from 'sharp';
 
-// SVG Definition for Bold Blue Omega (Ω) Symbol
-const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
-  <defs>
-    <!-- Rich Royal / Electric Blue Gradient -->
-    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#3b82f6" />
-      <stop offset="50%" stop-color="#2563eb" />
-      <stop offset="100%" stop-color="#1d4ed8" />
-    </linearGradient>
-
-    <!-- High-Contrast Soft Outer Shadow for contrast on Light and Dark backgrounds -->
-    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#1d4ed8" flood-opacity="0.35" />
-    </filter>
-  </defs>
-
-  <!-- Centered Bold Blue Omega (Ω) Symbol -->
-  <path d="M 80 379 H 176 A 136 136 0 1 1 336 379 H 432"
-        fill="none"
-        stroke="url(#blueGrad)"
-        stroke-width="80"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        filter="url(#shadow)" />
-</svg>`;
-
 // Helper function to build a valid binary ICO file containing multiple PNG images
 function createIco(pngBuffers, sizes) {
   const numImages = pngBuffers.length;
@@ -64,24 +38,63 @@ function createIco(pngBuffers, sizes) {
 
 async function main() {
   const publicDir = path.resolve('public');
-  
-  // 1. Write favicon.svg
-  const svgPath = path.join(publicDir, 'favicon.svg');
-  fs.writeFileSync(svgPath, svgContent, 'utf8');
-  console.log('Saved favicon.svg');
+  const sourceImagePath = path.join(publicDir, 'omega-logo-source.png');
+
+  if (!fs.existsSync(sourceImagePath)) {
+    throw new Error(`Source image not found at ${sourceImagePath}`);
+  }
+
+  // 1. Trim excess white margin from the source logo image
+  const trimmedBuffer = await sharp(sourceImagePath)
+    .trim()
+    .toBuffer();
+
+  const trimmedMeta = await sharp(trimmedBuffer).metadata();
+  const tWidth = trimmedMeta.width;
+  const tHeight = trimmedMeta.height;
+
+  // Target canvas size (512x512)
+  const canvasSize = 512;
+  // Fit trimmed logo horizontally with padding (440px wide)
+  const targetLogoWidth = 440;
+  const targetLogoHeight = Math.round((tHeight / tWidth) * targetLogoWidth);
+
+  const resizedLogo = await sharp(trimmedBuffer)
+    .resize(targetLogoWidth, targetLogoHeight, { fit: 'contain' })
+    .toBuffer();
+
+  // Create a 512x512 high-resolution master square image with crisp white background
+  // White background ensures high contrast and clarity on both light and dark browser tabs
+  const masterBuffer = await sharp({
+    create: {
+      width: canvasSize,
+      height: canvasSize,
+      channels: 4,
+      background: { r: 255, g: 255, b: 255, alpha: 1 }
+    }
+  })
+  .composite([
+    {
+      input: resizedLogo,
+      top: Math.round((canvasSize - targetLogoHeight) / 2),
+      left: Math.round((canvasSize - targetLogoWidth) / 2)
+    }
+  ])
+  .png()
+  .toBuffer();
 
   // 2. Generate PNG sizes
   const sizes = [16, 32, 48, 96, 180, 192, 512];
   const pngBuffers = {};
 
   for (const size of sizes) {
-    pngBuffers[size] = await sharp(Buffer.from(svgContent))
+    pngBuffers[size] = await sharp(masterBuffer)
       .resize(size, size)
       .png()
       .toBuffer();
   }
 
-  // 3. Save standard PNG files
+  // 3. Save standard PNG files in public/
   fs.writeFileSync(path.join(publicDir, 'favicon-96x96.png'), pngBuffers[96]);
   console.log('Saved favicon-96x96.png');
 
@@ -97,12 +110,21 @@ async function main() {
   fs.writeFileSync(path.join(publicDir, 'android-chrome-512x512.png'), pngBuffers[512]);
   console.log('Saved android-chrome-512x512.png');
 
+  // Convert master image into base64 PNG data URL to embed in favicon.svg for crisp SVG preview
+  const base64Png = masterBuffer.toString('base64');
+  const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <image width="512" height="512" href="data:image/png;base64,${base64Png}" />
+</svg>`;
+
+  fs.writeFileSync(path.join(publicDir, 'favicon.svg'), svgContent, 'utf8');
+  console.log('Saved favicon.svg');
+
   // 4. Generate multi-resolution ICO file (16, 32, 48)
   const icoBuffer = createIco([pngBuffers[16], pngBuffers[32], pngBuffers[48]], [16, 32, 48]);
   fs.writeFileSync(path.join(publicDir, 'favicon.ico'), icoBuffer);
   console.log('Saved favicon.ico');
 
-  console.log('All favicon assets successfully generated!');
+  console.log('All favicon assets successfully generated from uploaded logo photo!');
 }
 
 main().catch(err => {
