@@ -55,29 +55,29 @@ const protectionBundles = [
       'Exterior detail',
       'Trim restoration',
       'Clay bar decontamination',
-      'One step paint correction',
+      'One stage paint correction',
       '3 Year ceramic coating'
     ],
     time: '1 day',
     price: 6500,
-    deposit: '25% deposit required upon booking',
+    deposit: '50% deposit required upon booking',
     icon: 'shield',
     popular: true
   },
   {
     id: 'bundle-tier-3',
     name: 'Tier 3 Bundle',
-    description: 'The ultimate multi-day reset for your vehicle. We restore all plastic trim and clay bar the paint to remove bonded iron and tar contaminants, followed by an intensive two-step machine paint correction to eliminate up to 90% of defects. Locked in under our professional 5-year ceramic coating for maximum self-cleaning and mirror-like shine.',
+    description: 'The ultimate multi-day reset for your vehicle. We restore all plastic trim and clay bar the paint to remove bonded iron and tar contaminants, followed by an intensive two-stage machine paint correction to eliminate up to 90% of defects. Locked in under our professional 5-year ceramic coating for maximum self-cleaning and mirror-like shine.',
     features: [
       'Exterior detail',
       'Trim restoration',
       'Clay bar decontamination',
-      'Two step paint correction',
+      'Two stage paint correction',
       '5 Year ceramic coating'
     ],
     time: '1 to 2 days',
     price: 9500,
-    deposit: '25% deposit required upon booking',
+    deposit: '50% deposit required upon booking',
     icon: 'crown',
     popular: false
   }
@@ -85,33 +85,22 @@ const protectionBundles = [
 
 const detailingPackages = [
   {
-    id: 'interior-detail',
-    name: 'Interior Detail',
-    description: 'A premium deep cleaning session where absolute attention is paid to every single surface. We meticulously vacuum, sanitize, and extract dirt from seats and carpets, while detailing every crack, crevice, and plastic trim piece to ensure a spotless, factory-fresh cabin environment.',
-    features: [
-      'Full vacuum on every surface',
-      'Seat cleaning',
-      'Carpet cleaning',
-      'Deep cleaned plastics and trim',
-      'Interior fragrance'
-    ],
-    time: '2 to 2.5 hours',
-    price: 700,
-    icon: 'armchair',
-    popular: false
-  },
-  {
     id: 'exterior-detail',
     name: 'Exterior Detail',
-    description: 'A meticulous multi-stage exterior decontamination wash process designed to lift road grime and paint impurities. We restore faded exterior plastic trim to a deep black finish and detail wheels to absolute perfection, revealing a high-gloss, clean paint surface.',
+    description: 'A meticulous multi-stage exterior decontamination wash process designed to lift road grime and paint impurities. We perform a clay bar decontamination, restore faded exterior plastic trim to a deep black finish, and detail wheels to absolute perfection, revealing a high-gloss, clean paint surface.',
     features: [
       'Multi stage exterior wash',
+      'Clay bar decontamination',
       'Deep wheel detailing',
       'Trim restoration',
       'Final detailed touches'
     ],
     time: '2 to 2.5 hours',
-    price: 600,
+    pricing: {
+      hatchback: 600,
+      suvSedan: 650,
+      truckVan: 700
+    },
     icon: 'brush',
     popular: false
   }
@@ -123,8 +112,8 @@ const additionalOptions = [
     name: 'Paint Correction',
     description: 'Our professional machine polishing service is designed to permanently remove paint imperfections, such as swirl marks, light scratches, hazing, and oxidation. By utilizing specialized dual-action polishers, micro-abrasive compounds, and premium foam or wool pads, we carefully level the clear coat to expose a flawless, mirror-like finish. This process restores the paint\'s original depth, clarity, and gloss, preparing the surface perfectly for high-end ceramic coatings.',
     options: [
-      { label: 'One Step Correction (2-2.5h)', price: 2300 },
-      { label: 'Two Step Correction (3-4h)', price: 3800 }
+      { label: 'One Stage Correction (2-2.5h)', price: 2300 },
+      { label: 'Two Stage Correction (3-4h)', price: 3800 }
     ]
   },
   {
@@ -139,25 +128,17 @@ const additionalOptions = [
     ]
   },
   {
-    id: 'upholstery-cleaning',
-    name: 'Upholstery Cleaning',
-    description: 'Deep extraction cleaning to remove stains, dirt, and odors from seats and floor mats.',
-    options: [
-      { label: 'Seat Cleaning (Per Seat)', price: 100 },
-      { label: 'Floormat Cleaning (Per Mat)', price: 50 }
-    ]
-  },
-  {
     id: 'paint-enhancement',
     name: 'Paint Enhancement',
     description: 'A cost-effective machine polishing service designed for vehicles with relatively healthy paint that just need an extra boost of shine. We perform a light, single-stage polishing process that targets very fine swirls, light wash marring, and dullness to dramatically enhance paint clarity and gloss.',
-    price: 1200
+    price: 1500
   },
   {
-    id: 'engine-bay-detail',
-    name: 'Engine Bay Detail',
-    description: 'A meticulous cleaning, degreasing, and dressing of the engine bay compartment to remove accumulated dirt, grime, and oil deposits, leaving a clean, factory-fresh finish.',
-    price: 200
+    id: 'interior-screen-ppf',
+    name: 'Interior Screen PPF',
+    description: 'Precision-cut clear Paint Protection Film for vehicle infotainment displays, digital instrument clusters, and touch control screens. Protects sensitive glass and gloss panels against scratches, fingerprints, and UV wear.',
+    customPrice: 'Price on Request',
+    whatsappLink: 'https://wa.me/27605670893?text=Hi%20James!%20I%27d%20like%20to%20inquire%20about%20Interior%20Screen%20PPF.'
   }
 ];
 
@@ -284,7 +265,7 @@ const icons = {
                   <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-amber-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                   </svg>
-                  <span>25% Deposit Required</span>
+                  <span>50% Deposit Required</span>
                 </div>
               ) : (
                 <div class="h-8"></div>
@@ -333,23 +314,23 @@ const icons = {
         <div>
           <h4 class="text-sm font-black uppercase tracking-wider text-white">Booking Deposit Policy</h4>
           <p class="text-xs text-neutral-400 mt-1 leading-relaxed">
-            Please note: A <span class="text-amber-400 font-bold">25% deposit</span> is required upon booking for <span class="text-white font-semibold">Tier 2 Bundle</span> (R1,625 deposit) and <span class="text-white font-semibold">Tier 3 Bundle</span> (R2,375 deposit) to secure your slot.
+            Please note: A <span class="text-amber-400 font-bold">50% deposit</span> is required upon booking for <span class="text-white font-semibold">Tier 2 Bundle</span> (R3,250 deposit) and <span class="text-white font-semibold">Tier 3 Bundle</span> (R4,750 deposit) to secure your slot.
           </p>
         </div>
       </div>
       <div class="text-[10px] font-black uppercase tracking-widest text-amber-400 bg-amber-500/10 border border-amber-500/20 px-4 py-2.5 rounded-xl whitespace-nowrap">
-        25% Deposit Required
+        50% Deposit Required
       </div>
     </div>
 
-    {/* Interior and Exterior Detailing Header */}
+    {/* Exterior Detailing Header */}
     <div class="text-center mb-20 mt-12">
-       <h3 class="text-4xl font-black uppercase tracking-tight text-neutral-900 mb-4">Interior & Exterior <span class="text-blue-600">Detailing</span></h3>
+       <h3 class="text-4xl font-black uppercase tracking-tight text-neutral-900 mb-4">Exterior <span class="text-blue-600">Detailing</span></h3>
        <div class="w-16 h-1 bg-blue-600 mx-auto"></div>
     </div>
 
-    {/* Interior and Exterior Detailing Grid */}
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-32 max-w-5xl mx-auto">
+    {/* Exterior Detailing Grid */}
+    <div class="grid grid-cols-1 gap-10 mb-32 max-w-2xl mx-auto">
       {detailingPackages.map((pkg) => (
         <div class={`package-card relative flex flex-col p-10 bg-white border-2 ${pkg.popular ? 'border-blue-600 shadow-xl shadow-blue-600/10' : 'border-neutral-200'} rounded-2xl transition-all duration-300 group overflow-hidden`} data-pkg={JSON.stringify(pkg)}>
           {pkg.popular && (
@@ -365,13 +346,24 @@ const icons = {
           </div>
 
           <div class="space-y-6 mb-12">
-            <div class="h-20">
-              {/* Flat price, no size selector required */}
-            </div>
+            {pkg.pricing ? (
+              <div>
+                <label class="text-[10px] font-black text-blue-600 uppercase tracking-widest mb-2 block">Vehicle Size</label>
+                <select class="pkg-size-selector w-full bg-neutral-50 border border-neutral-200 p-4 text-neutral-900 font-bold uppercase tracking-widest text-xs outline-none focus:border-blue-600 transition-all rounded-xl appearance-none cursor-pointer">
+                  {vehicleTypes.map(type => (
+                    <option value={type.id}>{type.label}</option>
+                  ))}
+                </select>
+              </div>
+            ) : (
+              <div class="h-20">
+                {/* Flat price, no size selector required */}
+              </div>
+            )}
             
             <div class="flex justify-between items-end border-b-2 border-neutral-50 pb-4">
                <span class="text-neutral-400 text-xs font-bold uppercase tracking-widest">Total cost</span>
-               <span class="current-price text-5xl font-black text-neutral-900 transition-colors group-hover:text-blue-600">R{pkg.price}</span>
+               <span class="current-price text-5xl font-black text-neutral-900 transition-colors group-hover:text-blue-600">R{pkg.pricing ? pkg.pricing.hatchback : pkg.price}</span>
             </div>
           </div>
 
@@ -461,12 +453,31 @@ const icons = {
                    <div class="text-4xl font-black text-blue-600 current-opt-price mt-auto">R{opt.price}</div>
                  </div>
               )}
+              {opt.customPrice && (
+                 <div class="space-y-6 flex-grow flex flex-col justify-between">
+                   <div class="space-y-3 md:min-h-[100px] flex flex-col justify-end">
+                      {/* empty space to match heights */}
+                   </div>
+                   <div class="text-2xl sm:text-3xl font-black text-blue-600 current-opt-price mt-auto uppercase tracking-tight">{opt.customPrice}</div>
+                 </div>
+              )}
             </div>
           )}
           
-          <button class="add-option-to-cart mt-auto w-full py-4 border-2 border-neutral-200 text-neutral-900 font-black uppercase tracking-widest hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all rounded-xl">
-            Add to Cart
-          </button>
+          {opt.whatsappLink ? (
+            <a 
+              href={opt.whatsappLink} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="mt-auto w-full py-4 border-2 border-blue-600 bg-blue-600 text-white font-black uppercase tracking-widest hover:bg-neutral-900 hover:border-neutral-900 transition-all rounded-xl text-center block text-xs shadow-md shadow-blue-600/10"
+            >
+              Inquire Now
+            </a>
+          ) : (
+            <button class="add-option-to-cart mt-auto w-full py-4 border-2 border-neutral-200 text-neutral-900 font-black uppercase tracking-widest hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all rounded-xl text-xs">
+              Add to Cart
+            </button>
+          )}
         </div>
       ))}
     </div>
@@ -528,6 +539,7 @@ const icons = {
     const optAttr = card.getAttribute('data-opt');
     if (!optAttr) return;
     const opt = JSON.parse(optAttr);
+    if (opt.customPrice) return;
     const typeSelector = card.querySelector('.opt-type-selector');
     const sizeSelector = card.querySelector('.opt-size-selector');
     const qtySelector = card.querySelector('.opt-qty-selector');

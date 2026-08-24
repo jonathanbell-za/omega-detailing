@@ -2,64 +2,29 @@
 // Hero.astro
 ---
 
-<section class="relative min-h-[90vh] flex items-center pt-36 md:pt-64 pb-20 overflow-hidden bg-neutral-50 font-sans border-b border-neutral-200">
-  {/* Professional Blueprint Background */}
-  <div class="absolute inset-0 bg-white"></div>
-  <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_#f8fafc_0%,_#ffffff_100%)]"></div>
+<section class="relative min-h-[90vh] flex items-center pt-36 md:pt-64 pb-20 overflow-hidden bg-neutral-900 font-sans border-b border-neutral-800">
+  {/* Hero Background Image */}
+  <img 
+    src="/hero-bg.jpg" 
+    alt="Omega Mobile Detailing in Action" 
+    class="absolute inset-0 w-full h-full object-cover object-[20%_top]"
+  />
   
-  {/* Static Technical Pattern & Ambient Gradients */}
-  <div class="absolute inset-0 overflow-hidden pointer-events-none">
-    {/* Soft static blue glows for depth */}
-    <div class="absolute -top-[10%] left-[5%] w-[600px] h-[600px] bg-blue-600/[0.03] rounded-full blur-[100px]"></div>
-    <div class="absolute -bottom-[10%] right-[5%] w-[500px] h-[500px] bg-blue-600/[0.02] rounded-full blur-[100px]"></div>
-    
-    {/* Technical Dot Matrix Overlay */}
-    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" class="opacity-[0.06]">
-      <defs>
-        <pattern id="dotMatrix" width="24" height="24" patternUnits="userSpaceOnUse">
-          <circle cx="2" cy="2" r="1" fill="#3b82f6" />
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#dotMatrix)" />
-    </svg>
-  </div>
-
-  {/* Precision Grid Pattern */}
-  <div class="absolute inset-0 opacity-[0.03] pointer-events-none">
-    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <pattern id="smallGrid" width="20" height="20" patternUnits="userSpaceOnUse">
-          <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#3b82f6" stroke-width="0.5"/>
-        </pattern>
-        <pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse">
-          <rect width="100" height="100" fill="url(#smallGrid)"/>
-          <path d="M 100 0 L 0 0 0 100" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#grid)" />
-    </svg>
-  </div>
-
-  {/* Subtle Grainy Texture for Premium Feel */}
-  <div class="absolute inset-0 opacity-[0.40] pointer-events-none mix-blend-soft-light" style="background-image: url('https://www.transparenttextures.com/patterns/stardust.png');"></div>
+  {/* Dark Gradient Overlay for Premium Contrast & Readability */}
+  <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/35 to-black/60"></div>
 
   <!-- Content layer -->
   <div class="relative z-10 max-w-7xl px-6 w-full text-center mx-auto">
     <div class="max-w-6xl mx-auto space-y-12 animate-fade-in">
-      <div class="space-y-4">
-        <div class="inline-flex items-center gap-3 px-6 py-2 rounded-full border border-blue-600/20 bg-blue-600/5 backdrop-blur-md">
-          <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
-          <span class="text-blue-600 text-xs font-black uppercase tracking-[0.4em]">Expert Mobile Car Care</span>
-        </div>
+      {/* Heading text */}
+      <div class="flex justify-center">
+        <h1 class="text-3xl sm:text-5xl md:text-6xl max-w-5xl font-black text-white uppercase tracking-tight leading-tight drop-shadow-2xl">
+          Detailing, Paint Correction, & Ceramic Coating Specialist
+        </h1>
       </div>
       
-      <h1 class="text-5xl md:text-[5.5rem] font-black text-neutral-900 leading-[1.1] tracking-tighter uppercase drop-shadow-sm">
-        WELCOME TO OMEGA <br />
-        VEHICLE <span class="text-blue-600 italic">DETAILING</span>
-      </h1>
-      
-      <p class="text-lg md:text-2xl text-neutral-800 max-w-3xl mx-auto font-bold tracking-wide leading-relaxed">
-        Premium car detailing brought to you
+      <p class="text-lg md:text-2xl text-neutral-200 max-w-3xl mx-auto font-black uppercase tracking-widest leading-relaxed drop-shadow-md hero-subtitle">
+        Experience the Omega Standard
       </p>
       
       <div class="flex flex-col sm:flex-row gap-6 pt-6 justify-center">
@@ -67,14 +32,14 @@
           href="https://wa.me/27605670893?text=Hi%20James!%20I%27d%20like%20to%20book%20a%20detailing%20session." 
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center justify-center px-12 py-6 font-black text-white bg-blue-600 transition-all duration-300 hover:bg-neutral-900 shadow-xl shadow-blue-600/10 uppercase tracking-widest text-base rounded-full"
+          class="inline-flex items-center justify-center px-12 py-6 font-black text-white bg-blue-600 transition-all duration-300 hover:bg-white hover:text-neutral-900 shadow-xl shadow-blue-600/30 uppercase tracking-widest text-base rounded-full"
         >
           Book Your Session
         </a>
         
         <a 
           href="/pricing" 
-          class="inline-flex items-center justify-center px-12 py-6 font-black text-neutral-900 border-2 border-neutral-200 bg-white transition-all duration-300 hover:border-blue-600 hover:text-blue-600 uppercase tracking-widest text-base rounded-full"
+          class="inline-flex items-center justify-center px-12 py-6 font-black text-white border-2 border-white/40 bg-white/10 backdrop-blur-md transition-all duration-300 hover:border-white hover:bg-white hover:text-neutral-900 uppercase tracking-widest text-base rounded-full"
         >
           View Packages
         </a>
@@ -84,8 +49,8 @@
 
   <!-- Scroll Scroll -->
   <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-bounce">
-    <div class="w-6 h-10 border-2 border-neutral-300 rounded-full flex justify-center pt-2">
-      <div class="w-1 h-2 bg-blue-600 rounded-full"></div>
+    <div class="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center pt-2">
+      <div class="w-1 h-2 bg-blue-500 rounded-full"></div>
     </div>
   </div>
 </section>
@@ -109,7 +74,5 @@
     animation: fadeInRight 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
-  h1 { font-family: 'Inter', sans-serif; }
-
-  /* Technical Scanning Beam */
+  h1, .hero-subtitle { font-family: 'Inter', sans-serif; }
 </style>
