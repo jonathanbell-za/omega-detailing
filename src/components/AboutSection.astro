@@ -1,0 +1,111 @@
+---
+// AboutSection.astro
+---
+
+<section id="about" class="py-24 md:py-32 bg-white border-t border-neutral-100 text-neutral-900 overflow-hidden relative">
+  {/* Subtle Background Glow */}
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/5 rounded-full blur-[140px] pointer-events-none"></div>
+
+  <div class="max-w-6xl mx-auto px-6 relative z-10">
+    {/* Section Header */}
+    <div class="text-center max-w-3xl mx-auto mb-20">
+      <span class="text-[10px] font-black uppercase tracking-[0.35em] text-blue-600 mb-3 block">Est. July 2025</span>
+      <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6 leading-tight">
+        ABOUT <span class="text-blue-600">OMEGA</span>
+      </h2>
+      <div class="w-20 h-1.5 bg-blue-600 mx-auto mb-8"></div>
+      <p class="text-lg md:text-xl font-light text-neutral-600 leading-relaxed">
+        Founded in <strong class="font-bold text-neutral-900">July 2025</strong> by lead detailer <strong class="font-bold text-neutral-900">James Bell</strong>, Omega Detailing is a premier mobile vehicle detailing service dedicated to bringing showroom-quality care, paint restoration, and long-term protection directly to your doorstep.
+      </p>
+    </div>
+
+    {/* Main Grid: Story & Values */}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-stretch mb-16">
+      {/* Left Box: The Story & Philosophy */}
+      <div class="bg-neutral-50 border border-neutral-200 p-10 md:p-12 rounded-2xl flex flex-col justify-between space-y-6">
+        <div>
+          <div class="w-12 h-12 bg-blue-600/10 border border-blue-600/20 text-blue-600 rounded-xl flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385c.116.488-.415.87-.837.616l-4.665-2.825a.563.563 0 00-.586 0L5.352 20.54c-.422.254-.953-.128-.837-.616l1.285-5.385a.563.563 0 00-.182-.557l-4.204-3.602c-.38-.325-.178-.948.32-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-black uppercase tracking-tight text-neutral-900 mb-4">
+            Showroom Standards, Mobile Convenience
+          </h3>
+          <p class="text-neutral-600 font-light leading-relaxed mb-4">
+            We understand that your vehicle is more than just a means of transport—it is a valuable investment and a reflection of pride. At Omega Detailing, we treat every car with fanatical attention to detail.
+          </p>
+          <p class="text-neutral-600 font-light leading-relaxed">
+            From deep interior decontamination to precision paint refinement and protective coatings, we utilize high-grade equipment and proven techniques to safeguard and elevate your vehicle's aesthetic.
+          </p>
+        </div>
+
+        <div class="pt-6 border-t border-neutral-200/80 flex items-center justify-between">
+          <div>
+            <p class="text-xs font-black uppercase tracking-widest text-neutral-900">James Bell</p>
+            <p class="text-[10px] text-blue-600 uppercase tracking-widest font-bold">Founder & Lead Detailer</p>
+          </div>
+          <span class="text-xs font-bold text-neutral-400 uppercase tracking-widest">Est. 2025</span>
+        </div>
+      </div>
+
+      {/* Right Box: Key Highlights Grid */}
+      <div class="grid grid-cols-1 gap-6">
+        <div class="bg-neutral-50 border border-neutral-200 p-8 rounded-2xl flex gap-6 items-start">
+          <div class="w-10 h-10 bg-blue-600 text-white rounded-lg flex items-center justify-center font-black flex-shrink-0 text-sm">
+            01
+          </div>
+          <div>
+            <h4 class="text-lg font-black uppercase tracking-tight text-neutral-900 mb-2">
+              Uncompromising Quality
+            </h4>
+            <p class="text-sm font-light text-neutral-600 leading-relaxed">
+              Every curve, panel, and stitch receives personalized care using top-tier products designed to maximize gloss and preserve value.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-neutral-50 border border-neutral-200 p-8 rounded-2xl flex gap-6 items-start">
+          <div class="w-10 h-10 bg-blue-600 text-white rounded-lg flex items-center justify-center font-black flex-shrink-0 text-sm">
+            02
+          </div>
+          <div>
+            <h4 class="text-lg font-black uppercase tracking-tight text-neutral-900 mb-2">
+              Direct Doorstep Service
+            </h4>
+            <p class="text-sm font-light text-neutral-600 leading-relaxed">
+              No long drop-offs or waiting rooms. Our fully equipped mobile setup brings professional detailing directly to your home or workspace.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-neutral-50 border border-neutral-200 p-8 rounded-2xl flex gap-6 items-start">
+          <div class="w-10 h-10 bg-blue-600 text-white rounded-lg flex items-center justify-center font-black flex-shrink-0 text-sm">
+            03
+          </div>
+          <div>
+            <h4 class="text-lg font-black uppercase tracking-tight text-neutral-900 mb-2">
+              Long-Term Protection
+            </h4>
+            <p class="text-sm font-light text-neutral-600 leading-relaxed">
+              Specialized ceramic coatings and surface treatments engineered to defend your vehicle against harsh weather, contaminants, and UV wear.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Bottom Call to Action */}
+    <div class="text-center pt-6">
+      <a 
+        href="/pricing" 
+        class="inline-flex items-center gap-3 px-10 py-5 bg-blue-600 hover:bg-neutral-900 text-white font-black uppercase tracking-widest text-xs rounded-xl shadow-xl shadow-blue-600/20 hover:shadow-none transition-all duration-300 transform hover:scale-[1.02]"
+      >
+        <span>Explore Our Detailing Packages</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
