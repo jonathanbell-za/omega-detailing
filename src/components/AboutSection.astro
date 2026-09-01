@@ -7,16 +7,31 @@
   <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/5 rounded-full blur-[140px] pointer-events-none"></div>
 
   <div class="max-w-6xl mx-auto px-6 relative z-10">
-    {/* Section Header */}
-    <div class="text-center max-w-3xl mx-auto mb-20">
-      <span class="text-[10px] font-black uppercase tracking-[0.35em] text-blue-600 mb-3 block">Est. July 2025</span>
-      <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6 leading-tight">
-        ABOUT <span class="text-blue-600">OMEGA</span>
-      </h2>
-      <div class="w-20 h-1.5 bg-blue-600 mx-auto mb-8"></div>
-      <p class="text-lg md:text-xl font-light text-neutral-600 leading-relaxed">
-        Founded in <strong class="font-bold text-neutral-900">July 2025</strong> by lead detailer <strong class="font-bold text-neutral-900">James Bell</strong>, Omega Detailing is a premier mobile vehicle detailing service dedicated to bringing showroom-quality care, paint restoration, and long-term protection directly to your doorstep.
-      </p>
+    {/* Section Header & Detail Photo */}
+    <div class="flex flex-col md:flex-row gap-10 md:gap-14 items-center mb-16">
+      {/* Photo: Order 2 on Mobile (Underneath text), Order 1 on PC Desktop (Left of text) */}
+      <div class="order-2 md:order-1 w-full md:w-5/12 flex justify-center flex-shrink-0">
+        <div class="relative group max-w-sm md:max-w-none w-full">
+          <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+          <img 
+            src="/about-section.jpg" 
+            alt="Hand detailing Audi RS - Omega Mobile Detailing" 
+            class="relative rounded-2xl w-full h-[380px] md:h-[460px] object-cover shadow-2xl border border-neutral-200/80"
+          />
+        </div>
+      </div>
+
+      {/* Text Content: Order 1 on Mobile (Top), Order 2 on PC Desktop (Right) */}
+      <div class="order-1 md:order-2 w-full md:w-7/12 text-center md:text-left">
+        <span class="text-[10px] font-black uppercase tracking-[0.35em] text-blue-600 mb-3 block">Est. July 2025</span>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter mb-6 leading-tight">
+          ABOUT <span class="text-blue-600">OMEGA</span>
+        </h2>
+        <div class="w-20 h-1.5 bg-blue-600 mb-8 mx-auto md:mx-0"></div>
+        <p class="text-lg md:text-xl font-light text-neutral-600 leading-relaxed">
+          Founded in <strong class="font-bold text-neutral-900">July 2025</strong> by lead detailer <strong class="font-bold text-neutral-900">James Bell</strong>, Omega Detailing is a premier mobile vehicle detailing service dedicated to bringing showroom-quality care, paint restoration, and long-term protection directly to your doorstep.
+        </p>
+      </div>
     </div>
 
     {/* Main Grid: Story & Values */}

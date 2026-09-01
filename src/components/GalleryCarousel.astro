@@ -1,0 +1,143 @@
+---
+// GalleryCarousel.astro
+const images = [
+  '/gallery/bmw-m2-black.jpg',
+  '/gallery/mercedes-amg-gt-red.jpg',
+  '/gallery/audi-r8-blue.jpg',
+  '/gallery/mercedes-g63-grey.jpg',
+  '/gallery/porsche-gt3-purple.jpg',
+  '/gallery/bmw-white-sedan.jpg'
+];
+---
+
+<section id="gallery" class="py-20 md:py-28 bg-neutral-950 text-white overflow-hidden relative border-t border-neutral-800">
+  {/* Ambient Background Glow */}
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-blue-600/10 rounded-full blur-[160px] pointer-events-none"></div>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
+    {/* Section Header */}
+    <div class="text-center max-w-3xl mx-auto mb-10">
+      <span class="text-[10px] font-black uppercase tracking-[0.35em] text-blue-500 mb-3 block">Portfolio</span>
+      <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4 leading-tight">
+        WORK <span class="text-blue-500">GALLERY</span>
+      </h2>
+      <div class="w-16 h-1 bg-blue-500 mx-auto"></div>
+    </div>
+
+    {/* Main Carousel Frame - Fitted for Full Uncropped Photos */}
+    <div class="relative group rounded-3xl overflow-hidden bg-black border border-neutral-800 shadow-2xl">
+      {/* Slides Container */}
+      <div id="carousel-slides" class="relative h-[550px] sm:h-[650px] md:h-[750px] w-full flex items-center justify-center bg-black p-4">
+        {images.map((src, index) => (
+          <div 
+            class={`carousel-slide absolute inset-0 p-4 sm:p-6 flex items-center justify-center transition-opacity duration-700 ease-in-out ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+            data-index={index}
+          >
+            <img 
+              src={src} 
+              alt={`Gallery photo ${index + 1}`}
+              class="max-w-full max-h-full object-contain rounded-xl shadow-2xl"
+              loading={index === 0 ? 'eager' : 'lazy'}
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* Navigation Buttons (Previous & Next) */}
+      <button 
+        id="carousel-prev"
+        aria-label="Previous Photo"
+        class="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 rounded-full bg-black/70 hover:bg-blue-600 text-white backdrop-blur-md border border-white/20 flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95 shadow-xl"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+        </svg>
+      </button>
+
+      <button 
+        id="carousel-next"
+        aria-label="Next Photo"
+        class="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 rounded-full bg-black/70 hover:bg-blue-600 text-white backdrop-blur-md border border-white/20 flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95 shadow-xl"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+        </svg>
+      </button>
+
+      {/* Slide Counter Badge */}
+      <div class="absolute top-6 right-6 z-20 px-4 py-1.5 rounded-full bg-black/70 border border-white/20 backdrop-blur-md text-xs font-black tracking-widest text-neutral-200">
+        <span id="carousel-counter">1</span> / {images.length}
+      </div>
+    </div>
+
+    {/* Thumbnail Navigation Bar */}
+    <div class="flex items-center justify-center gap-3 md:gap-4 mt-6 overflow-x-auto py-2">
+      {images.map((src, index) => (
+        <button 
+          class={`carousel-thumb relative w-16 h-16 md:w-20 md:h-20 rounded-xl overflow-hidden border-2 transition-all duration-300 flex-shrink-0 bg-black ${index === 0 ? 'border-blue-500 scale-105 opacity-100 ring-2 ring-blue-500/50' : 'border-neutral-800 opacity-50 hover:opacity-100'}`}
+          data-index={index}
+          aria-label={`Go to slide ${index + 1}`}
+        >
+          <img src={src} alt={`Thumbnail ${index + 1}`} class="w-full h-full object-cover" />
+        </button>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  function initCarousel() {
+    const slides = document.querySelectorAll<HTMLElement>('.carousel-slide');
+    const thumbs = document.querySelectorAll<HTMLElement>('.carousel-thumb');
+    const counter = document.getElementById('carousel-counter');
+    const prevBtn = document.getElementById('carousel-prev');
+    const nextBtn = document.getElementById('carousel-next');
+
+    if (!slides.length) return;
+
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+
+    function goToSlide(index: number) {
+      currentIndex = (index + totalSlides) % totalSlides;
+
+      slides.forEach((slide, i) => {
+        if (i === currentIndex) {
+          slide.classList.remove('opacity-0', 'z-0');
+          slide.classList.add('opacity-100', 'z-10');
+        } else {
+          slide.classList.remove('opacity-100', 'z-10');
+          slide.classList.add('opacity-0', 'z-0');
+        }
+      });
+
+      thumbs.forEach((thumb, i) => {
+        if (i === currentIndex) {
+          thumb.classList.add('border-blue-500', 'scale-105', 'opacity-100', 'ring-2', 'ring-blue-500/50');
+          thumb.classList.remove('border-neutral-800', 'opacity-50');
+        } else {
+          thumb.classList.remove('border-blue-500', 'scale-105', 'opacity-100', 'ring-2', 'ring-blue-500/50');
+          thumb.classList.add('border-neutral-800', 'opacity-50');
+        }
+      });
+
+      if (counter) {
+        counter.textContent = (currentIndex + 1).toString();
+      }
+    }
+
+    prevBtn?.addEventListener('click', () => goToSlide(currentIndex - 1));
+    nextBtn?.addEventListener('click', () => goToSlide(currentIndex + 1));
+
+    thumbs.forEach((thumb) => {
+      thumb.addEventListener('click', () => {
+        const index = parseInt(thumb.getAttribute('data-index') || '0', 10);
+        goToSlide(index);
+      });
+    });
+  }
+
+  // Initialize on load & Astro page transitions
+  initCarousel();
+  document.addEventListener('astro:page-load', initCarousel);
+</script>

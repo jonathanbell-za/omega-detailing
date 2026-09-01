@@ -3,11 +3,18 @@
 ---
 
 <section class="relative min-h-[90vh] flex items-center pt-36 md:pt-64 pb-20 overflow-hidden bg-neutral-900 font-sans border-b border-neutral-800">
-  {/* Hero Background Image */}
+  {/* Desktop Hero Background Image (Purple Porsche GT3) - Desktop ONLY */}
   <img 
-    src="/hero-bg.jpg" 
-    alt="Omega Mobile Detailing in Action" 
-    class="absolute inset-0 w-full h-full object-cover object-[20%_top]"
+    src="/hero-bg-desktop.jpg" 
+    alt="Omega Mobile Detailing Desktop Background" 
+    class="hidden md:block absolute inset-0 w-full h-full object-cover object-center"
+  />
+
+  {/* Mobile Hero Background Image (Blue Audi R8) - Mobile ONLY */}
+  <img 
+    src="/hero-bg-mobile.jpg" 
+    alt="Omega Mobile Detailing Mobile Background" 
+    class="block md:hidden absolute inset-0 w-full h-full object-cover object-center"
   />
   
   {/* Dark Gradient Overlay for Premium Contrast & Readability */}
